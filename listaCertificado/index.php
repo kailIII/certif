@@ -29,7 +29,7 @@ $oMysql->conectar();
          */
         
         $oMysqlExpediente = $oMysql->getExpedienteActiveRecord();
-        $oExpediente = new ExpedienteValueObject();
+
         /* Busco los expediente.idCertificacion y los agrego a una lista para 
          * poder buscar los nombres de las obras y poder recorrerlo. */
         $oExpedientes = $oMysqlExpediente->buscarIdCertificaciones();
@@ -82,31 +82,33 @@ $oMysql->conectar();
                             <th>Cedido</th>
                         </tr>
                         <?php
+                        unset($oExpediente);
+                        $oExpediente = new ExpedienteValueObject();
                         $oExpediente->setIdCertificacion($lista_);
                         $oExpediente = $oMysqlExpediente->buscarPorCertificacion($oExpediente);
-                        foreach ($oExpediente as $expe) {
                         $total = 0;
-                        $oExpediente1 = new ExpedienteValueObject();
-                        $oExpediente1->setIdexpediente($expe->getIdexpediente());
-    //                    $oExpediente = $oMysqlExpediente->buscarPorCertificacion($oExpediente);
-                        $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
-                        foreach ($oExpediente1 as $expediente) {
-                        ?>
-                        <tr>
-                            <td><?php echo $expediente->getCertDpv(); ?></td>
-                            <td><?php echo $expediente->getCertDnv(); ?></td>
-                            <td><?php echo $expediente->getExpDnv(); ?></td>
-                            <td><?php echo $expediente->getExpDpv(); ?></td>
-                            <td><?php echo $expediente->getMes(); ?></td>
-                            <td><?php echo $expediente->getDependencia(); ?></td>
-                            <td><?php echo $expediente->getComentario(); ?></td>
-                            <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
-                            <td><?php echo $expediente->getVencimiento(); ?></td>
-                            <td><?php echo $expediente->getCedido(); ?></td>
-                        </tr>
-                        <?php
+                        foreach ($oExpediente as $expe) {
+                            unset($oExpediente1);
+                            $oExpediente1 = new ExpedienteValueObject();
+                            $oExpediente1->setIdexpediente($expe->getIdexpediente());
+                            $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
+                            foreach ($oExpediente1 as $expediente) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $expediente->getCertDpv(); ?></td>
+                                    <td><?php echo $expediente->getCertDnv(); ?></td>
+                                    <td><?php echo $expediente->getExpDnv(); ?></td>
+                                    <td><?php echo $expediente->getExpDpv(); ?></td>
+                                    <td><?php echo $expediente->getMes(); ?></td>
+                                    <td><?php echo $expediente->getDependencia(); ?></td>
+                                    <td><?php echo $expediente->getComentario(); ?></td>
+                                    <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
+                                    <td><?php echo $expediente->getVencimiento(); ?></td>
+                                    <td><?php echo $expediente->getCedido(); ?></td>
+                                </tr>
+                                <?php
+                            }
                         }
-                        unset($oExpediente1);
                         ?>
                         <tr>
                             <td colspan="6"></td>
@@ -116,7 +118,6 @@ $oMysql->conectar();
                         </tr>
                     </table>
                     <?php
-                    }
                 }
                 ?>
             </div>
