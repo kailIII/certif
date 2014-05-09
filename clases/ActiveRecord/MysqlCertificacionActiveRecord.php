@@ -272,8 +272,6 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
         $sql .= ", " . $oValueObject->getParticipacion();
         $sql .= ", '" . $oValueObject->getImagen() . "'";
         $sql .= ", '" . $oValueObject->getFechaFirma() . "');";
-//        if(mysql_query($sql)){ return TRUE;}
-//        else {return FALSE;}
         echo "<br>".$sql . "<br>";
         $resultado = mysql_query($sql) or die(mysql_error());
         if($resultado){
@@ -313,4 +311,3 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
         }
     }
 }
-?>

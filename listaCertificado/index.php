@@ -1,4 +1,11 @@
 <?php
+/**
+ * veamos veamos...
+ * Obtengo los expediente.idCertificacíon con los cuales puedo buscar los certificacion.idObra y de esta manera
+ * obtengo los obrasejecutadas.denominacion (nombre de la obra).
+ * Ahora que ya tengo los nombres de las obras puedo recorrer todos los expedientes por cada certificacion.
+ * 
+ */
 include_once '../inicio/valido.php';
 require_once '../clases/ActiveRecord/ActiveRecordAbstractFactory.php';
 $oMysql = ActiveRecordAbstractFactory::getActiveRecordFactory(ActiveRecordAbstractFactory::MYSQL);
@@ -23,68 +30,93 @@ $oMysql->conectar();
         
         $oMysqlExpediente = $oMysql->getExpedienteActiveRecord();
         $oExpediente = new ExpedienteValueObject();
-//        $oExpedientes = $oMysqlExpediente->buscarIdCertificaciones();
-//        $lista = '';
-//        foreach ($oExpedientes as $expediente) {
-//            $lista .= $expediente->getIdCertificacion().',';
-//        }
-//        $lista = substr($lista, 0, strlen($lista)-1);
-        $oExpediente = $oMysqlExpediente->buscarIdExpedientes();
+        /* Busco los expediente.idCertificacion y los agrego a una lista para 
+         * poder buscar los nombres de las obras y poder recorrerlo. */
+        $oExpedientes = $oMysqlExpediente->buscarIdCertificaciones();
+        $lista = '';
+        foreach ($oExpedientes as $expediente) {
+            $lista .= $expediente->getIdCertificacion().',';
+        }
+        $lista = substr($lista, 0, strlen($lista)-1);
+        $lista = explode(',', $lista);
+        /* En $lista poseo los idCertificacion. */
+        
+        $oMysqlObra = $oMysql->getObrasEjecutadasActiveRecord();
+        $oMysqlCertificacion = $oMysql->getCertificacionActiveRecord();
+        include_once '../clases/ValueObject/CertificacionValueObject.php';
+        $oCertificacion = new CertificacionValueObject();
+//        
+//        $oMysqlObra = $oMysql->getObrasEjecutadasActiveRecord();
+//        
+//        $oExpediente = $oMysqlExpediente->buscarIdExpedientes();
         ?>
         <div class="container">
             <legend>Certificados</legend>
             <div class="form-group col-lg-12">
                 <?php
-                foreach ($oExpediente as $expe) {
-                ?>
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                        <td colspan="10" class="success">Ruta 39 (UTE Losi-Pietroboni)</td>
-                    </tr>
-                    <tr>
-                        <th>Certificado DPV</th>
-                        <th>Certificado DNV</th>
-                        <th>Expediente DNV</th>
-                        <th>Expediente DPV</th>
-                        <th>Mes</th>
-                        <th>Dependencia</th>
-                        <th>Comentario</th>
-                        <th>Importe</th>
-                        <th>Vto.</th>
-                        <th>Cedido</th>
-                    </tr>
-                    <?php
-                    $total = 0;
-                    $oExpediente1 = new ExpedienteValueObject();
-                    $oExpediente1->setIdexpediente($expe->getIdexpediente());
-//                    $oExpediente = $oMysqlExpediente->buscarPorCertificacion($oExpediente);
-                    $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
-                    foreach ($oExpediente1 as $expediente) {
+                foreach($lista as $lista_){
+                    /* Busco el nombre de la obra. */
+                    $oCertificacion->setId($lista_);
+                    $oCertificacion = $oMysqlCertificacion->buscar($oCertificacion);
+                    
+                    unset($oObra);
+                    $oObra = new ObrasEjecutadasValueObject();
+                    $oObra->setID($oCertificacion->getIdObra());
+                    $oObra = $oMysqlObra->buscar($oObra);
+
                     ?>
-                    <tr>
-                        <td><?php echo $expediente->getCertDpv(); ?></td>
-                        <td><?php echo $expediente->getCertDnv(); ?></td>
-                        <td><?php echo $expediente->getExpDnv(); ?></td>
-                        <td><?php echo $expediente->getExpDpv(); ?></td>
-                        <td><?php echo $expediente->getMes(); ?></td>
-                        <td><?php echo $expediente->getDependencia(); ?></td>
-                        <td><?php echo $expediente->getComentario(); ?></td>
-                        <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
-                        <td><?php echo $expediente->getVencimiento(); ?></td>
-                        <td><?php echo $expediente->getCedido(); ?></td>
-                    </tr>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion()); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Certificado DPV</th>
+                            <th>Certificado DNV</th>
+                            <th>Expediente DNV</th>
+                            <th>Expediente DPV</th>
+                            <th>Mes</th>
+                            <th>Dependencia</th>
+                            <th>Comentario</th>
+                            <th>Importe</th>
+                            <th>Vto.</th>
+                            <th>Cedido</th>
+                        </tr>
+                        <?php
+                        $oExpediente->setIdCertificacion($lista_);
+                        $oExpediente = $oMysqlExpediente->buscarPorCertificacion($oExpediente);
+                        foreach ($oExpediente as $expe) {
+                        $total = 0;
+                        $oExpediente1 = new ExpedienteValueObject();
+                        $oExpediente1->setIdexpediente($expe->getIdexpediente());
+    //                    $oExpediente = $oMysqlExpediente->buscarPorCertificacion($oExpediente);
+                        $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
+                        foreach ($oExpediente1 as $expediente) {
+                        ?>
+                        <tr>
+                            <td><?php echo $expediente->getCertDpv(); ?></td>
+                            <td><?php echo $expediente->getCertDnv(); ?></td>
+                            <td><?php echo $expediente->getExpDnv(); ?></td>
+                            <td><?php echo $expediente->getExpDpv(); ?></td>
+                            <td><?php echo $expediente->getMes(); ?></td>
+                            <td><?php echo $expediente->getDependencia(); ?></td>
+                            <td><?php echo $expediente->getComentario(); ?></td>
+                            <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
+                            <td><?php echo $expediente->getVencimiento(); ?></td>
+                            <td><?php echo $expediente->getCedido(); ?></td>
+                        </tr>
+                        <?php
+                        }
+                        unset($oExpediente1);
+                        ?>
+                        <tr>
+                            <td colspan="6"></td>
+                            <td>Total</td>
+                            <td><?php echo $total; ?></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </table>
                     <?php
                     }
-                    unset($oExpediente1);
-                    ?>
-                    <tr>
-                        <td colspan="6"></td>
-                        <td>Total</td>
-                        <td><?php echo $total; ?></td>
-                        <td colspan="2"></td>
-                    </tr>
-                </table>
-                <?php
                 }
                 ?>
             </div>
