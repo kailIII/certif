@@ -39,7 +39,7 @@ $oMysql->conectar();
                 ?>
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <td colspan="10">Ruta 39 (UTE Losi-Pietroboni)</td>
+                        <td colspan="10" class="success">Ruta 39 (UTE Losi-Pietroboni)</td>
                     </tr>
                     <tr>
                         <th>Certificado DPV</th>
