@@ -29,17 +29,17 @@ String.prototype.repeat = function(num) {
     $("select[name='info']").selectpicker({style: 'btn-info'});
 
     // Show and create tooltip first so we can apply the data-tooltip-style
-    $("[data-toggle=tooltip]").tooltip("show");
+    $('[data-toggle=tooltip]').tooltip();
 
     // Add style class name to a tooltips
-    $(".tooltip").addClass(function() {
-      if ($(this).prev().attr("data-tooltip-style")) {
-        return "tooltip-" + $(this).prev().attr("data-tooltip-style");
-      }
-    });
-
-    // Hide the tooltip so it's not visible until hovering
-    $("[data-toggle=tooltip]").tooltip("hide");
+//    $(".tooltip").addClass(function() {
+//      if ($(this).prev().attr("data-tooltip-style")) {
+//        return "tooltip-" + $(this).prev().attr("data-tooltip-style");
+//      }
+//    });
+//
+//    // Hide the tooltip so it's not visible until hovering
+//    $("[data-toggle=tooltip]").tooltip("hide");
 
     // Tags Input
     $(".tagsinput").tagsInput();
