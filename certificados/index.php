@@ -62,47 +62,47 @@ include_once '../inicio/valido.php';
                         <div class="col-lg-4">
                             <div>
                                 <label data-toggle="tooltip">Certif. Nro.</label>
-                                <input class="form-control" data-toggle="tooltip" name="nrocert" title="Numero de Certificado" id="nrocert" alt="Numero de Certificado" placeholder="Certif. Nro."><br/>
+                                <input class="form-control" data-toggle="tooltip" name="nrocert" title="Numero de Certificado" id="nrocert" alt="Numero de Certificado" placeholder="Certif. Nro." type="number" onkeypress="return soloNumeros(event);" /><br/>
                             </div>                   
                             <div>
                                 <label>Periodo</label>
-                                <input class="form-control" data-toggle="tooltip" name="periodo" title="Periodo" alt="Periodo" id="periodo" placeholder="Periodo"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="periodo" title="Periodo" alt="Periodo" id="periodo" placeholder="Periodo" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
                             </div>
                             <div >
                                 <label>Fecha de firma</label>
-                                <input class="form-control" data-toggle="tooltip" name="fechafirma" id="fechafirma" title="Fecha de firma" alt="Fecha de firma" placeholder="Fecha de firma"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="fechafirma" id="fechafirma" title="Fecha de firma" alt="Fecha de firma" placeholder="Fecha de firma" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
                             </div>
                             <div>
                                 <label>Participacion (%)</label>
-                                <input class="form-control" data-toggle="tooltip" name="participacion" id="participacion" title="Participacion (%)" alt="Participacion (%)" placeholder="Participacion (%)"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="participacion" id="participacion" title="Participacion (%)" alt="Participacion (%)" placeholder="Participacion (%)" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Importe basico</label>
-                                <input class="form-control" data-toggle="tooltip" name="importeb" id="importeb" title="Importe basico" alt="Importe basico" placeholder="Importe basico"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="importeb" id="importeb" title="Importe basico" alt="Importe basico" placeholder="Importe basico" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div >
                                 <label>Importe redeterminado</label>
-                                <input class="form-control" data-toggle="tooltip" name="importer" id="importer" title="Importe redeterminado" alt="Importe redeterminado" placeholder="Importe redeterminado"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="importer" id="importer" title="Importe redeterminado" alt="Importe redeterminado" placeholder="Importe redeterminado" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div>
                                 <label>Fondo de emparo</label>
-                                <input class="form-control" data-toggle="tooltip" name="fondoamp" id="fondoamp" title="Fondo de emparo" alt="Fondo de emparo" placeholder="Fondo de emparo"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="fondoamp" id="fondoamp" title="Fondo de emparo" alt="Fondo de emparo" placeholder="Fondo de emparo" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div>
                                 <label>Anticipo financiero / Garantia</label>
-                                <input class="form-control" data-toggle="tooltip" name="anticipo" id="anticipo" title="Anticipo financiero / Garantia" alt="Anticipo financiero / Garantia" placeholder="Anticipo financiero / Garantia"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="anticipo" id="anticipo" title="Anticipo financiero / Garantia" alt="Anticipo financiero / Garantia" placeholder="Anticipo financiero / Garantia" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Otros</label>
-                                <input class="form-control" data-toggle="tooltip" name="otros" id="otros" title="Otros" alt="Otros" placeholder="Otros"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="otros" id="otros" title="Otros" alt="Otros" placeholder="Otros" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div >
                                 <label>A cobrar</label>
-                                <input class="form-control" data-toggle="tooltip" name="acobrar" id="acobrar" title="A cobrar" alt="A cobrar" placeholder="A cobrar"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="acobrar" id="acobrar" title="A cobrar" alt="A cobrar" placeholder="A cobrar" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div class="custom-input-file btn btn-lg btn-primary">
                                 <input type="file" class="input-file" id="archivo" />
@@ -119,15 +119,15 @@ include_once '../inicio/valido.php';
                 
                 <div class="col-lg-4">
                     <label>Certificado DPV</label>
-                    <input class="form-control" data-toggle="tooltip" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" ><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" /><br/>
                     <label>Certificado DNV</label>
-                    <input class="form-control" data-toggle="tooltip" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV" /><br/>
                     <label>Expediente DPV</label>
-                    <input class="form-control" data-toggle="tooltip" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV" onkeypress="return soloNumeros(event);" /><br/>
                 </div>
                 <div class="col-lg-4">
                     <label>Expediente DNV</label>
-                    <input class="form-control" data-toggle="tooltip" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();" onkeypress="return soloNumeros(event);" /><br/>
                     <label>Mes</label>
                     <input class="form-control" data-toggle="tooltip" name="mesExpediente" id="mesExpediente" title="Mes" alt="Mes" placeholder="Mes"><br/>
                     <label>Depedencia</label>
@@ -135,9 +135,9 @@ include_once '../inicio/valido.php';
                 </div>
                 <div class="col-lg-4">
                     <label>Importe</label>
-                    <input class="form-control" data-toggle="tooltip" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"onkeypress="return soloNumeros(event);" /><br/>
                     <label>Vencimiento</label>
-                    <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
                     <label>Cedido</label>
                     <input class="form-control" data-toggle="tooltip" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" alt="Cedido" placeholder="Cedido"><br/>
                 </div>
