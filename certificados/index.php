@@ -70,39 +70,39 @@ include_once '../inicio/valido.php';
                             </div>
                             <div >
                                 <label>Fecha de firma</label>
-                                <input class="form-control" name="fechafirma" id="fechafirma" title="Fecha de firma" alt="Fecha de firma" placeholder="Fecha de firma"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="fechafirma" id="fechafirma" title="Fecha de firma" alt="Fecha de firma" placeholder="Fecha de firma"><br/>
                             </div>
                             <div>
                                 <label>Participacion (%)</label>
-                                <input class="form-control" name="participacion" id="participacion" title="Participacion (%)" alt="Participacion (%)" placeholder="Participacion (%)"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="participacion" id="participacion" title="Participacion (%)" alt="Participacion (%)" placeholder="Participacion (%)"><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Importe basico</label>
-                                <input class="form-control" name="importeb" id="importeb" title="Importe basico" alt="Importe basico" placeholder="Importe basico"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="importeb" id="importeb" title="Importe basico" alt="Importe basico" placeholder="Importe basico"><br/>
                             </div>
                             <div >
                                 <label>Importe redeterminado</label>
-                                <input class="form-control" name="importer" id="importer" title="Importe redeterminado" alt="Importe redeterminado" placeholder="Importe redeterminado"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="importer" id="importer" title="Importe redeterminado" alt="Importe redeterminado" placeholder="Importe redeterminado"><br/>
                             </div>
                             <div>
                                 <label>Fondo de emparo</label>
-                                <input class="form-control" name="fondoamp" id="fondoamp" title="Fondo de emparo" alt="Fondo de emparo" placeholder="Fondo de emparo"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="fondoamp" id="fondoamp" title="Fondo de emparo" alt="Fondo de emparo" placeholder="Fondo de emparo"><br/>
                             </div>
                             <div>
                                 <label>Anticipo financiero / Garantia</label>
-                                <input class="form-control" name="anticipo" id="anticipo" title="Anticipo financiero / Garantia" alt="Anticipo financiero / Garantia" placeholder="Anticipo financiero / Garantia"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="anticipo" id="anticipo" title="Anticipo financiero / Garantia" alt="Anticipo financiero / Garantia" placeholder="Anticipo financiero / Garantia"><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Otros</label>
-                                <input class="form-control" name="otros" id="otros" title="Otros" alt="Otros" placeholder="Otros"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="otros" id="otros" title="Otros" alt="Otros" placeholder="Otros"><br/>
                             </div>
                             <div >
                                 <label>A cobrar</label>
-                                <input class="form-control" name="acobrar" id="acobrar" title="A cobrar" alt="A cobrar" placeholder="A cobrar"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="acobrar" id="acobrar" title="A cobrar" alt="A cobrar" placeholder="A cobrar"><br/>
                             </div>
                             <div class="custom-input-file btn btn-lg btn-primary">
                                 <input type="file" class="input-file" id="archivo" />
@@ -119,27 +119,27 @@ include_once '../inicio/valido.php';
                 
                 <div class="col-lg-4">
                     <label>Certificado DPV</label>
-                    <input class="form-control" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" ><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" ><br/>
                     <label>Certificado DNV</label>
-                    <input class="form-control" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV"><br/>
                     <label>Expediente DPV</label>
-                    <input class="form-control" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV"><br/>
                 </div>
                 <div class="col-lg-4">
                     <label>Expediente DNV</label>
-                    <input class="form-control" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();"><br/>
                     <label>Mes</label>
-                    <input class="form-control" name="mesExpediente" id="mesExpediente" title="Mes" alt="Mes" placeholder="Mes"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="mesExpediente" id="mesExpediente" title="Mes" alt="Mes" placeholder="Mes"><br/>
                     <label>Depedencia</label>
-                    <input class="form-control" name="dependenciaExpediente" id="dependenciaExpediente" title="Dependencia" alt="Dependencia" placeholder="Dependencia"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="dependenciaExpediente" id="dependenciaExpediente" title="Dependencia" alt="Dependencia" placeholder="Dependencia"><br/>
                 </div>
                 <div class="col-lg-4">
                     <label>Importe</label>
-                    <input class="form-control" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"><br/>
                     <label>Vencimiento</label>
-                    <input class="form-control" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento"><br/>
                     <label>Cedido</label>
-                    <input class="form-control" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" alt="Cedido" placeholder="Cedido"><br/>
+                    <input class="form-control" data-toggle="tooltip" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" alt="Cedido" placeholder="Cedido"><br/>
                 </div>
                 <div  class="">
                     <label>Comentario</label>
