@@ -66,43 +66,43 @@ include_once '../inicio/valido.php';
                             </div>                   
                             <div>
                                 <label>Periodo</label>
-                                <input class="form-control" data-toggle="tooltip" name="periodo" id="periodo" placeholder="Periodo"><br/>
+                                <input class="form-control" data-toggle="tooltip" name="periodo" title="Periodo" id="periodo" placeholder="Periodo"><br/>
                             </div>
                             <div >
                                 <label>Fecha de firma</label>
-                                <input class="form-control" name="fechafirma" id="fechafirma" placeholder="Fecha de firma"><br/>
+                                <input class="form-control" name="fechafirma" id="fechafirma" title="Fecha de firma" placeholder="Fecha de firma"><br/>
                             </div>
                             <div>
                                 <label>Participacion (%)</label>
-                                <input class="form-control" name="participacion" id="participacion" placeholder="Participacion (%)"><br/>
+                                <input class="form-control" name="participacion" id="participacion" title="Participacion (%)" placeholder="Participacion (%)"><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Importe basico</label>
-                                <input class="form-control" name="importeb" id="importeb" placeholder="Importe basico"><br/>
+                                <input class="form-control" name="importeb" id="importeb" title="Importe basico" placeholder="Importe basico"><br/>
                             </div>
                             <div >
                                 <label>Importe redeterminado</label>
-                                <input class="form-control" name="importer" id="importer" placeholder="Importe redeterminado"><br/>
+                                <input class="form-control" name="importer" id="importer" title="Importe redeterminado" placeholder="Importe redeterminado"><br/>
                             </div>
                             <div>
                                 <label>Fondo de emparo</label>
-                                <input class="form-control" name="fondoamp" id="fondoamp" placeholder="Fondo de emparo"><br/>
+                                <input class="form-control" name="fondoamp" id="fondoamp" title="Fondo de emparo" placeholder="Fondo de emparo"><br/>
                             </div>
                             <div>
                                 <label>Anticipo financiero / Garantia</label>
-                                <input class="form-control" name="anticipo" id="anticipo" placeholder="Anticipo financiero / Garantia"><br/>
+                                <input class="form-control" name="anticipo" id="anticipo" title="Anticipo financiero / Garantia" placeholder="Anticipo financiero / Garantia"><br/>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div>
                                 <label>Otros</label>
-                                <input class="form-control" name="otros" id="otros" placeholder="Otros"><br/>
+                                <input class="form-control" name="otros" id="otros" title="Otros" placeholder="Otros"><br/>
                             </div>
                             <div >
                                 <label>A cobrar</label>
-                                <input class="form-control" name="acobrar" id="acobrar" placeholder="A cobrar"><br/>
+                                <input class="form-control" name="acobrar" id="acobrar" title="A cobrar" placeholder="A cobrar"><br/>
                             </div>
                             <div class="custom-input-file btn btn-lg btn-primary">
                                 <input type="file" class="input-file" id="archivo" />
@@ -112,38 +112,38 @@ include_once '../inicio/valido.php';
                         </div>
                         <div class="">
 <!--                            <label>Comentario sobre el certificado</label>-->
-                            <input class="form-control" name="cometarioscert" id="cometarioscert" placeholder="Comentario sobre el certificado">
+                            <input class="form-control" name="cometarioscert" id="cometarioscert" title="Comentario sobre el certificado" placeholder="Comentario sobre el certificado">
                         </div>
                     </div>    
                 </div>
                 
                 <div class="col-lg-4">
                     <label>Certificado DPV</label>
-                    <input class="form-control" name="dpvCertificado" id="dpvCertificado" placeholder="Certificado DPV" ><br/>
+                    <input class="form-control" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" placeholder="Certificado DPV" ><br/>
                     <label>Certificado DNV</label>
-                    <input class="form-control" name="dnvCertificado" id="dnvCertificado" placeholder="Certificado DNV"><br/>
+                    <input class="form-control" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" placeholder="Certificado DNV"><br/>
                     <label>Expediente DPV</label>
-                    <input class="form-control" name="dpvExpediente" id="dpvExpediente" placeholder="Expediente DPV"><br/>
+                    <input class="form-control" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" placeholder="Expediente DPV"><br/>
                 </div>
                 <div class="col-lg-4">
                     <label>Expediente DNV</label>
-                    <input class="form-control" name="dnvExpediente" id="dnvExpediente" placeholder="Expediente DNV" onblur="busquedaExpediente();"><br/>
+                    <input class="form-control" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();"><br/>
                     <label>Mes</label>
-                    <input class="form-control" name="mesExpediente" id="mesExpediente" placeholder="Mes"><br/>
+                    <input class="form-control" name="mesExpediente" id="mesExpediente" title="Mes" placeholder="Mes"><br/>
                     <label>Depedencia</label>
-                    <input class="form-control" name="dependenciaExpediente" id="dependenciaExpediente" placeholder="Dependencia"><br/>
+                    <input class="form-control" name="dependenciaExpediente" id="dependenciaExpediente" title="Dependencia" placeholder="Dependencia"><br/>
                 </div>
                 <div class="col-lg-4">
                     <label>Importe</label>
-                    <input class="form-control" name="importeExpediente" id="importeExpediente" placeholder="Importe"><br/>
+                    <input class="form-control" name="importeExpediente" id="importeExpediente" title="Importe" placeholder="Importe"><br/>
                     <label>Vencimiento</label>
-                    <input class="form-control" name="vencimientoExpediente" id="vencimientoExpediente" placeholder="Vencimiento"><br/>
+                    <input class="form-control" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" placeholder="Vencimiento"><br/>
                     <label>Cedido</label>
-                    <input class="form-control" name="cedidoExpediente" id="cedidoExpediente" placeholder="Cedido"><br/>
+                    <input class="form-control" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" placeholder="Cedido"><br/>
                 </div>
                 <div  class="">
                     <label>Comentario</label>
-                    <input class="form-control" name="comentarioExpediente" id="comentarioExpediente" placeholder="Comentario"><br/>
+                    <input class="form-control" name="comentarioExpediente" id="comentarioExpediente" title="Comentario" placeholder="Comentario"><br/>
                 <div class="span3">
                     <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
                 </div>
