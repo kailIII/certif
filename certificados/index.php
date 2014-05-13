@@ -87,7 +87,7 @@ include_once '../inicio/valido.php';
                                 <input class="form-control" data-toggle="tooltip" name="importer" id="importer" title="Importe redeterminado" alt="Importe redeterminado" placeholder="Importe redeterminado" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div>
-                                <label>Fondo de emparo</label>
+                                <label>Fondo de amparo</label>
                                 <input class="form-control" data-toggle="tooltip" name="fondoamp" id="fondoamp" title="Fondo de emparo" alt="Fondo de emparo" placeholder="Fondo de emparo" onkeypress="return soloNumeros(event);" /><br/>
                             </div>
                             <div>
