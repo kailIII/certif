@@ -40,9 +40,8 @@ include_once '../inicio/valido.php';
                 </div>
                 <div class="form-group col-lg-12">
                     <div class="col-lg-6">
-                        <button class="btn" type="button" name="muestraCertificado" id="muestraCertificado" onclick="verOcultarCertificado()" value="Ver Certificado">Ver Certificado</button>
-
                         <button class="btn" type="button" name="muestraExpedientes" id="muestraExpedientes" onclick="verOcultarCertificado()" value="Ver Certificado">Ver Expediente</button>
+                        <button class="btn" type="button" name="muestraCertificado" id="muestraCertificado" onclick="verOcultarCertificado()" value="Ver Certificado">Ver Certificado</button>
                     </div><br/>
                 </div>
                 <div id="certificados" style="display: none;">

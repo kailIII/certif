@@ -1,0 +1,8 @@
+# Activar RewriteEngine
+RewriteEngine on
+
+# Reescribir la URL solicitada por el usuario
+#   Entrada:  libreta/identificacion
+#   Salida: libreta/index.php?deo=identificacion
+
+RewriteRule ^modificaCertificado/([a-zA-Z0-9]+)$ modificaCertificado/index.php?id=$1
