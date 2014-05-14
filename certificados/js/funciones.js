@@ -135,10 +135,17 @@ function guardarDatos(){
 function verOcultarCertificado(){
     if(document.getElementById("certificados").style.display === "none"){
         document.getElementById("certificados").style.display="";
-        document.getElementById("muestraCertificado").innerHTML = "Ocultar Certificado";
+//        document.getElementById("muestraCertificado").innerHTML = "Ocultar Certificado";
+        document.getElementById("muestraCertificado").style.background = "#1abc9c";
+        document.getElementById("muestraExpedientes").style.background = "#bdc3c7";
+        document.getElementById("expedientes").style.display="none";
+
     } else {
         document.getElementById("certificados").style.display = "none";
-        document.getElementById("muestraCertificado").innerHTML = "Ver Certificado";
+        document.getElementById("expedientes").style.display = "";
+//        document.getElementById("muestraCertificado").innerHTML = "Ver Certificado";
+        document.getElementById("muestraExpedientes").style.background = "#1abc9c";
+        document.getElementById("muestraCertificado").style.background = "#bdc3c7";
     }
 }
 function busquedaExpediente(){
