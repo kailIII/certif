@@ -6,3 +6,4 @@ RewriteEngine on
 #   Salida: libreta/index.php?deo=identificacion
 
 RewriteRule ^modificaCertificado/([a-zA-Z0-9]+)$ modificaCertificado/index.php?id=$1
+RewriteRule ^historiaCertificado/([a-zA-Z0-9]+)$ historiaCertificado/index.php?id=$1

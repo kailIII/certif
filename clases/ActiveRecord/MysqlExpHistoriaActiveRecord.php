@@ -2,7 +2,7 @@
 include_once 'activeRecordInterface.php';
 include_once '../clases/ValueObject/ExpHistoriaValueObject.php';
 /**
- * Description of ExpHistoriaActiveRecord
+ * Description of MysqlExpHistoriaActiveRecord
  *
  * @author Martin
  */
@@ -19,8 +19,31 @@ class MysqlExpHistoriaActiveRecord implements ActiveRecord {
         
     }
 
+    /**
+     * 
+     * @param ExpHistoriaValueObject $oValueObject
+     * @return boolean|\ExpHistoriaValueObject
+     */
     public function buscar($oValueObject) {
-        
+        $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, dependencia, comentario "
+                . "FROM exphistoria WHERE idexpediente = " 
+                . $oValueObject->getIdexpediente();
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $aExpediente = array();
+            while ($fila = mysql_fetch_object($resultado)){
+                $oExpediente = new ExpHistoriaValueObject();
+                $oExpediente->setIdexpediente($fila->idexpediente);
+                $oExpediente->setFecha($fila->fecha);
+                $oExpediente->setDependencia($fila->dependencia);
+                $oExpediente->setComentario($fila->comentario);
+                $aExpediente[] = $oExpediente;
+                unset($oExpediente);
+            }
+            return $aExpediente;
+        } else {
+            return false;
+        }
     }
 
     public function buscarTodo() {

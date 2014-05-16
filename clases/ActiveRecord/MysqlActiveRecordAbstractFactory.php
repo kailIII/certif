@@ -133,9 +133,9 @@ class MysqlActiveRecordAbstractFactory extends ActiveRecordAbstractFactory
    /**
    * Nos permite obtener un objeto de tipo MysqlExpHisotriaActiveRecord.
    * 
-   * @return MysqlExpHistotiaActiveRecord
+   * @return MysqlExpHistoriaActiveRecord
    */
    public function getExpHistotiaActiveRecord() {
-      return new MysqlExpHistotiaActiveRecord();
+      return new MysqlExpHistoriaActiveRecord();
    }
 }

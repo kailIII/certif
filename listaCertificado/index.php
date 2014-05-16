@@ -94,7 +94,7 @@ $oMysql->conectar();
                             $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
                             foreach ($oExpediente1 as $expediente) {
                                 ?>
-                        <tr ondblclick="javascript:window.location.href='../modificaCertificado/'+<?php echo $expediente->getIdexpediente(); ?>;">
+                        <tr ondblclick="javascript:window.location.href='../historiaCertificado/'+<?php echo $expediente->getIdexpediente(); ?>;">
                                     <td><?php echo $expediente->getCertDpv(); ?></td>
                                     <td><?php echo $expediente->getCertDnv(); ?></td>
                                     <td><?php echo $expediente->getExpDnv(); ?></td>
