@@ -17,6 +17,14 @@ $oMysql->conectar();
         <div class="container">
             <legend>Expediente Certificados</legend>
             <div class="form-group col-lg-12">
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="javascript:history.back();">
+                            <span class="fui-arrow-left"></span>
+                            <span>Listado Expediente</span>
+                        </a>
+                    </li>
+                </ul>
                 <?php
                 /* Buscar a travez del id del expediente los datos para poder buscar el historial del mismo. */
                 $oExpediente = new ExpedienteValueObject();

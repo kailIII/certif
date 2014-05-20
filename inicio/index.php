@@ -15,7 +15,7 @@
                         <h4>Bienvenido a <small>SGO</small></h4>
                     </div>
                     <div class="login-form">
-                        <form id="formulario_ingreso" name="formulario_ingreso" method="post" action="ingreso.php">
+                        <form id="formulario_ingreso" name="formulario_ingreso" method="post" action="ingreso.php" autocomplete="off">
                             <input type='hidden' name='token' value="<?php  echo $token ?>" />
                             <div class="form-group">
                                 <input type="text" class="form-control login-field" value="" placeholder="Ingrese su nombre" id="login-name" name="usu" id="usu" />

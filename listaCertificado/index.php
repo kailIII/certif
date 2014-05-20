@@ -70,8 +70,8 @@ $oMysql->conectar();
                             <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion()); ?></td>
                         </tr>
                         <tr>
-                            <th>Certificado DPV</th>
-                            <th>Certificado DNV</th>
+                            <th>Cert. DPV</th>
+                            <th>Cert. DNV</th>
                             <th>Expediente DNV</th>
                             <th>Expediente DPV</th>
                             <th>Mes</th>
@@ -79,7 +79,7 @@ $oMysql->conectar();
                             <!--<th>Comentario</th>-->
                             <th>Importe</th>
                             <th>Vto.</th>
-                            <th>Restante</th>
+                            <th>Restante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <!--<th>Cedido</th>-->
                         </tr>
                         <?php
@@ -94,8 +94,21 @@ $oMysql->conectar();
                             $oExpediente1->setIdexpediente($expe->getIdexpediente());
                             $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
                             foreach ($oExpediente1 as $expediente) {
+                                unset($oMysqlExpHistoria);
+                                unset($oExpHistoria);
+                                $oMysqlExpHistoria = $oMysql->getExpHistotiaActiveRecord();
+                                $oExpHistoria = new ExpHistoriaValueObject();
+                                $oExpHistoria->setIdexpediente($expe->getIdexpediente());
+                                $oExpHistoria = $oMysqlExpHistoria->buscar($oExpHistoria);
+                                if($oExpHistoria){
+                                    $diaTabla = new DateTime($oExpHistoria[0]->getFecha());
+                                } else {
+                                    $diaTabla = new DateTime(date('Y-m-d'));
+                                }
+                                $diaHoy = new DateTime(date('Y-m-d'));
+                                $dias = $diaTabla->diff($diaHoy);
                                 ?>
-                        <tr ondblclick="javascript:window.location.href='../historiaCertificado/'+<?php echo $expediente->getIdexpediente(); ?>;">
+                                <tr ondblclick="javascript:window.location.href='../historiaCertificado/'+<?php echo $expediente->getIdexpediente(); ?>;">
                                     <td><?php echo $expediente->getCertDpv(); ?></td>
                                     <td><?php echo $expediente->getCertDnv(); ?></td>
                                     <td><?php echo $expediente->getExpDnv(); ?></td>
@@ -105,7 +118,10 @@ $oMysql->conectar();
                                     <!--<td><?php // echo $expediente->getComentario(); ?></td>-->
                                     <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
                                     <td><?php echo $expediente->getVencimiento(); ?></td>
-                                    <td><div class="progress"><div class="progress-bar" style="width: <?php echo ((2*100)/7); ?>%;"></div></div>
+                                    <?php if ((($dias->format('%a')*100)/7)<50) $progreso = 'progress-bar-susses'; ?>
+                                    <?php if ((($dias->format('%a')*100)/7)>=50) $progreso = 'progress-bar-warning'; ?>
+                                    <?php if ((($dias->format('%a')*100)/7)>=85) $progreso = 'progress-bar-danger'; ?>
+                                    <td><div class="progress"><div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"></div></div>
                                     </td>
                                     <!--<td><?php // echo $expediente->getCedido(); ?></td>-->
                                 </tr>

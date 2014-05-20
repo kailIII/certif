@@ -25,7 +25,8 @@ class MysqlExpHistoriaActiveRecord implements ActiveRecord {
      * @return boolean|\ExpHistoriaValueObject
      */
     public function buscar($oValueObject) {
-        $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, dependencia, comentario "
+//        $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, dependencia, comentario "
+        $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%Y-%m-%d') as fecha, dependencia, comentario "
                 . "FROM exphistoria WHERE idexpediente = " 
                 . $oValueObject->getIdexpediente();
         $resultado = mysql_query($sql);
