@@ -59,7 +59,7 @@ if(isset($_POST['nrocert'])){
         $error ++;
     }
 }
-
+/* Seteo los datos del expediente. */
 $oMysqlExpediente = $oMysql->getExpedienteActiveRecord();
 $oExpediente = new ExpedienteValueObject();
 $oExpediente->setIdCertificacion($oCertificado->getId());
@@ -73,19 +73,60 @@ $oExpediente->setImporte($_POST['importeExpediente']);
 $oExpediente->setVencimiento($_POST['vencimientoExpediente']);
 $oExpediente->setCedido($_POST['cedidoExpediente']);
 $oExpediente->setComentario($_POST['comentarioExpediente']);
-
+/* Grabacion del expediente. */
 if(!$oMysqlExpediente->guardar($oExpediente)){
+    $error ++;
+}
+
+/* Para almacenar en la tabla vialidad. */
+$oMysqlVialidad = $oMysql->getVialidadActiveRecord();
+$oVialidad = new VialidadValueObject();
+$oVialidad->setIdentificador($_POST['identificador']);
+$oVialidad->setTipotramite($_POST['tipotramite']);
+$oVialidad->setTema($_POST['tema']);
+$oVialidad->setFechaalta($_POST['fechaalta']);
+$oVialidad->setExtracto($_POST['extracto']);
+$oVialidad->setEstado($_POST['estado']);
+$oVialidad->setOrganismoa($_POST['organismoa']);
+$oVialidad->setDependenciaa($_POST['dependenciaa']);
+$oVialidad->setOrganismod($_POST['organismod']);
+$oVialidad->setDependenciad($_POST['dependenciad']);
+$oVialidad->setConformado($_POST['conformado']);
+$oVialidad->setIdexpediente($oExpediente->getIdexpediente());
+
+if(!$oMysqlVialidad->guardar($oVialidad)){
+    $error ++;
+}
+
+/* Grabacion de los datos del historial del expediente. */
+$oMysqlExpHistoria = $oMysql->getExpHistotiaActiveRecord();
+$oExpHistoria = new ExpHistoriaValueObject();
+$oExpHistoria->setComentario($_POST['comentarioExpediente']);
+$oExpHistoria->setDependencia($_POST['dependenciaExpediente']);
+$oExpHistoria->setFecha($_POST['fechaalta']);
+$oExpHistoria->setIdexpediente($oExpediente->getIdexpediente());
+if(!$oMysqlExpHistoria->guardar($oExpHistoria)){
     $error ++;
 }
 
 if($error == 0){
     mysql_query("COMMIT;");
     ?>
-    <h2 style="color: green">Los Datos Se Grabaron Correctamente!!!</h2>
+    <div class="form-group has-success">
+        <div class="col-xs6">
+            <input type="text" value="Los Datos Se Grabaron Correctamente" class="form-control">
+            <span class="input-icon fui-check-inverted"></span>
+        </div>
+    </div>
     <?php
 } else {
     mysql_query("ROLLBACK;");
     ?>
-    <h1 style="color: red">Los Datos NO Se Grabaron!!!</h1>
+    <div class="form-group has-error">
+        <div class="col-xs6">
+            <input type="text" value="Los Datos No Han Sido Almacenados" class="form-control">
+            <span class="input-icon fui-check-inverted"></span>
+        </div>
+    </div>
     <?php
 }

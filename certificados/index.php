@@ -40,8 +40,8 @@ include_once '../inicio/valido.php';
                 </div>
                 <div class="form-group col-lg-12">
                     <div class="col-lg-6">
-                        <button class="btn" type="button" name="muestraExpedientes" id="muestraExpedientes" onclick="verOcultarCertificado()" value="Ver Certificado">Ver Expediente</button>
-                        <button class="btn" type="button" name="muestraCertificado" id="muestraCertificado" onclick="verOcultarCertificado()" value="Ver Certificado">Ver Certificado</button>
+                        <button class="btn" type="button" name="muestraExpedientes" id="muestraExpedientes" onclick="OcultarCertificado()" value="Ver Certificado" style="background-color: rgb(26, 188, 156);">Ver Expediente</button>
+                        <button class="btn" type="button" name="muestraCertificado" id="muestraCertificado" onclick="verCertificado()" value="Ver Certificado">Ver Certificado</button>
                     </div><br/>
                 </div>
                 <div id="certificados" style="display: none;">
@@ -118,41 +118,44 @@ include_once '../inicio/valido.php';
                     </div>    
                 </div>
                 <div id="expedientes">
-                    <div class="col-lg-4">
-                        <label>Certificado DPV</label>
-                        <input class="form-control" data-toggle="tooltip" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" /><br/>
-                        <label>Certificado DNV</label>
-                        <input class="form-control" data-toggle="tooltip" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV" /><br/>
-                        <label>Expediente DPV</label>
-                        <input class="form-control" data-toggle="tooltip" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV" onkeypress="return soloNumeros(event);" /><br/>
-                    </div>
-                    <div class="col-lg-4">
-                        <label>Expediente DNV</label>
-                        <input class="form-control" data-toggle="tooltip" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();" onkeypress="return soloNumeros(event);" /><br/>
-                        <label>Mes</label>
-                        <input class="form-control" data-toggle="tooltip" name="mesExpediente" id="mesExpediente" title="Mes" alt="Mes" placeholder="Mes"><br/>
-                        <label>Depedencia</label>
-                        <input class="form-control" data-toggle="tooltip" name="dependenciaExpediente" id="dependenciaExpediente" title="Dependencia" alt="Dependencia" placeholder="Dependencia"><br/>
-                    </div>
-                    <div class="col-lg-4">
-                        <label>Importe</label>
-                        <input class="form-control" data-toggle="tooltip" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"onkeypress="return soloNumeros(event);" /><br/>
-                        <label>Vencimiento</label>
-                        <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
-                        <label>Cedido</label>
-                        <input class="form-control" data-toggle="tooltip" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" alt="Cedido" placeholder="Cedido"><br/>
-                    </div>
-                    <div  class="">
-                        <label>Comentario</label>
-                        <input class="form-control" name="comentarioExpediente" id="comentarioExpediente" title="Comentario" alt="Comentario" placeholder="Comentario"><br/>
+                    <div class="well">
+                        <div class="col-lg-4">
+                            <label>Certificado DPV</label>
+                            <input class="form-control" data-toggle="tooltip" name="dpvCertificado" id="dpvCertificado" title="Certificado DPV" alt="Certificado DPV" placeholder="Certificado DPV" /><br/>
+                            <label>Certificado DNV</label>
+                            <input class="form-control" data-toggle="tooltip" name="dnvCertificado" id="dnvCertificado" title="Certificado DNV" alt="Certificado DNV" placeholder="Certificado DNV" /><br/>
+                            <label>Expediente DPV</label>
+                            <input class="form-control" data-toggle="tooltip" name="dpvExpediente" id="dpvExpediente" title="Expediente DPV" alt="Expediente DPV" placeholder="Expediente DPV" onkeypress="return soloNumeros(event);" /><br/>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Expediente DNV</label>
+                            <input class="form-control" data-toggle="tooltip" name="dnvExpediente" id="dnvExpediente" title="Expediente DNV" alt="Expediente DNV" placeholder="Expediente DNV" onblur="busquedaExpediente();" onkeypress="return soloNumeros(event);" /><br/>
+                            <label>Mes</label>
+                            <input class="form-control" data-toggle="tooltip" name="mesExpediente" id="mesExpediente" title="Mes" alt="Mes" placeholder="Mes"><br/>
+                            <label>Depedencia</label>
+                            <input class="form-control" data-toggle="tooltip" name="dependenciaExpediente" id="dependenciaExpediente" title="Dependencia" alt="Dependencia" placeholder="Dependencia"><br/>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Importe</label>
+                            <input class="form-control" data-toggle="tooltip" name="importeExpediente" id="importeExpediente" title="Importe" alt="Importe" placeholder="Importe"onkeypress="return soloNumeros(event);" /><br/>
+                            <label>Vencimiento</label>
+                            <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
+                            <label>Cedido</label>
+                            <input class="form-control" data-toggle="tooltip" name="cedidoExpediente" id="cedidoExpediente" title="Cedido" alt="Cedido" placeholder="Cedido"><br/>
+                        </div>
+                        <div  class="">
+                            <label>Comentario</label>
+                            <input class="form-control" name="comentarioExpediente" id="comentarioExpediente" title="Comentario" alt="Comentario" placeholder="Comentario"><br/>
+                        </div>
                     </div>
                 </div>
                 <div class="span3">
                     <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
-                </div>    
+                </div>
+                <br />
             </form>
-         </div>
-        <div id="divResultado"></div>
+            <div id="divResultado"></div>
+        </div>
         <?php include_once "../includes/php/footer.php";?>
         <?php include_once "../includes/php/flatui_js.php";?>
     </body>

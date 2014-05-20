@@ -266,16 +266,28 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
         $sql.=");";
         $resultado = mysql_query($sql) or die(mysql_error());
         if($resultado){
-            $sql = "SELECT idexpediente FROM expediente WHERE idCertificacion = '"
-                    . $oValueObject->getIdCertificacion() . "';";
-            $resultado = mysql_query($sql) or die(mysql_error());
-            if($resultado){
-                $fila = mysql_fetch_object($resultado);
-                $oValueObject->setIdexpediente($fila->idexpediente);
-                return TRUE;
+//            if(mysql_query($sql)){
+            $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");
+            $id = mysql_fetch_array($result);
+            if($id[0]<>0) {
+                $oValueObject->setIdexpediente($id[0]);
+                return true;
+            } else {
+                return false;
             }
         } else {
-            return FALSE;
+            return false;
         }
+//            $sql = "SELECT idexpediente FROM expediente WHERE idCertificacion = '"
+//                    . $oValueObject->getIdCertificacion() . "';";
+//            $resultado = mysql_query($sql) or die(mysql_error());
+//            if($resultado){
+//                $fila = mysql_fetch_object($resultado);
+//                $oValueObject->setIdexpediente($fila->idexpediente);
+//                return TRUE;
+//            }
+//        } else {
+//            return FALSE;
+//        }
     }
 }

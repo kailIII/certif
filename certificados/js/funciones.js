@@ -9,7 +9,7 @@ function objetoAjax(){
             xmlhttp = false;
         }
     }
-    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    if (!xmlhttp && typeof XMLHttpRequest !== 'undefined') {
         xmlhttp = new XMLHttpRequest();
     }
     return xmlhttp;
@@ -18,7 +18,15 @@ function objetoAjax(){
 function guardarDatos(){
     var certificado = "";
 
+    document.getElementById('nombreobra').style.border = "2px solid #bdc3c7";
     var nombreobra = document.getElementById('nombreobra').value;
+    
+    if(nombreobra === ''){
+        document.getElementById('nombreobra').style.border = "2px solid red";
+        alert('Debe ingresar un nombre de obra.');
+        return false;
+    }
+    
     var divResultado = document.getElementById('divResultado');
 
     if(document.getElementById("certificados").style.display !== "none"){
@@ -78,6 +86,28 @@ function guardarDatos(){
             +"&comentarios="+comentarios;
     }
     
+    /* Busco los datos que se grabaran en la tabla vialidad. */
+    var identificador = document.getElementById('h_01').value;
+    var tipotramite = document.getElementById('h_02').value;
+    var tema = document.getElementById('h_03').value;
+    var fechaalta = document.getElementById('h_04').value;
+    var fechaalta_ = fechaalta.split('/');
+    fechaalta = fechaalta_[2]+'-'+fechaalta_[1]+'-'+fechaalta_[0];
+    var extracto = document.getElementById('h_05').value;
+    var estado = document.getElementById('h_06').value;
+    var organismoa = document.getElementById('h_07').value;
+    var dependenciaa = document.getElementById('h_08').value;
+    var organismod = document.getElementById('h_09').value;
+    var dependenciad = document.getElementById('h_10').value;
+    var conformado = document.getElementById('h_11').value;
+    var vialidad = "&identificador="+identificador+"&tipotramite="+tipotramite
+            +"&tema="+tema+"&fechaalta="+fechaalta
+            +"&extracto="+extracto+"&estado="+estado
+            +"&organismoa="+organismoa+"&dependenciaa="+dependenciaa
+            +"&organismod="+organismod+"&dependenciad="+dependenciad
+            +"&conformado="+conformado;
+    /* Fin de la recoleccion de los datos. */
+    
     var dpvCertificado = document.getElementById('dpvCertificado').value;
     var dnvCertificado = document.getElementById("dnvCertificado").value;
     var dpvExpediente = document.getElementById("dpvExpediente").value;
@@ -116,37 +146,20 @@ function guardarDatos(){
             +"&cedidoExpediente="+cedidoExpediente
             +"&comentarioExpediente="+comentarioExpediente
             +"&nombreobra="+nombreobra
-            +certificado);
-//    ajax.send("nombreobra="+nombreobra
-//            +"&tipocertf="+tipocertf
-//            +"&nrocert="+nrocert
-//            +"&periodo="+periodo
-//            +"&fechafirma="+fechafirma
-//            +"&participacion="+participacion
-//            +"&importeb="+importeb
-//            +"&importer="+importer
-//            +"&fondoamp="+fondoamp
-//            +"&anticipo="+anticipo
-//            +"&otros="+otros
-//            +"&acobrar="+acobrar
-//            +"&comentarios="+comentarios);
+            +certificado+vialidad);
 }
 
-function verOcultarCertificado(){
-    if(document.getElementById("certificados").style.display === "none"){
-        document.getElementById("certificados").style.display="";
-//        document.getElementById("muestraCertificado").innerHTML = "Ocultar Certificado";
-        document.getElementById("muestraCertificado").style.background = "#1abc9c";
-        document.getElementById("muestraExpedientes").style.background = "#bdc3c7";
-        document.getElementById("expedientes").style.display="none";
-
-    } else {
-        document.getElementById("certificados").style.display = "none";
-        document.getElementById("expedientes").style.display = "";
-//        document.getElementById("muestraCertificado").innerHTML = "Ver Certificado";
-        document.getElementById("muestraExpedientes").style.background = "#1abc9c";
-        document.getElementById("muestraCertificado").style.background = "#bdc3c7";
-    }
+function verCertificado(){
+    document.getElementById("certificados").style.display="";
+    document.getElementById("muestraCertificado").style.background = "#1abc9c";
+    document.getElementById("muestraExpedientes").style.background = "#bdc3c7";
+    document.getElementById("expedientes").style.display="none";
+}
+function OcultarCertificado(){    
+    document.getElementById("certificados").style.display = "none";
+    document.getElementById("expedientes").style.display = "";
+    document.getElementById("muestraExpedientes").style.background = "#1abc9c";
+    document.getElementById("muestraCertificado").style.background = "#bdc3c7";
 }
 function busquedaExpediente(){
     var expediente = document.getElementById('dnvExpediente').value;

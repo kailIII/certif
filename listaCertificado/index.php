@@ -76,10 +76,11 @@ $oMysql->conectar();
                             <th>Expediente DPV</th>
                             <th>Mes</th>
                             <th>Dependencia</th>
-                            <th>Comentario</th>
+                            <!--<th>Comentario</th>-->
                             <th>Importe</th>
                             <th>Vto.</th>
-                            <th>Cedido</th>
+                            <th>Restante</th>
+                            <!--<th>Cedido</th>-->
                         </tr>
                         <?php
                         unset($oExpediente);
@@ -101,17 +102,19 @@ $oMysql->conectar();
                                     <td><?php echo $expediente->getExpDpv(); ?></td>
                                     <td><?php echo $expediente->getMes(); ?></td>
                                     <td><?php echo $expediente->getDependencia(); ?></td>
-                                    <td><?php echo $expediente->getComentario(); ?></td>
+                                    <!--<td><?php // echo $expediente->getComentario(); ?></td>-->
                                     <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
                                     <td><?php echo $expediente->getVencimiento(); ?></td>
-                                    <td><?php echo $expediente->getCedido(); ?></td>
+                                    <td><div class="progress"><div class="progress-bar" style="width: <?php echo ((2*100)/7); ?>%;"></div></div>
+                                    </td>
+                                    <!--<td><?php // echo $expediente->getCedido(); ?></td>-->
                                 </tr>
                                 <?php
                             }
                         }
                         ?>
                         <tr>
-                            <td colspan="6"></td>
+                            <td colspan="5"></td>
                             <td>Total</td>
                             <td><?php echo $total; ?></td>
                             <td colspan="2"></td>

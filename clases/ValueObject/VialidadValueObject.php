@@ -6,8 +6,8 @@
  */
 class VialidadValueObject {
     private $idvialidad, $identificador, $tipotramite, $tema, $fechaalta, $extracto, 
-            $estado, $organismoa, $dependenciaa, $organismod, $dependenciad, $conformado;
-    
+            $estado, $organismoa, $dependenciaa, $organismod, $dependenciad, $conformado, $idexpediente;
+
     public function getIdvialidad() {
         return $this->idvialidad;
     }
@@ -102,5 +102,13 @@ class VialidadValueObject {
 
     public function setConformado($conformado) {
         $this->conformado = $conformado;
+    }
+    
+    public function getIdexpediente() {
+        return $this->idexpediente;
+    }
+
+    public function setIdexpediente($idexpediente) {
+        $this->idexpediente = $idexpediente;
     }
 }

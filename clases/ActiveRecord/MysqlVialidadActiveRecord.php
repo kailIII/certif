@@ -47,25 +47,35 @@ class MysqlVialidadActiveRecord implements ActiveRecord {
      * @param VialidadValueObject $oValueObject
      */
     public function guardar($oValueObject) {
-        $sql = "INSERT INTO vialidad (identificador, tipotramite, tema, "
-                . "fechaalta, extracto, estado, organismoa, dependenciaa, "
-                . "organismod, dependenciad, conformado) VALUES ('"
-                . $oValueObject->getIdentificador() . "', '"
-                . $oValueObject->getTipotramite() . "', '"
-                . $oValueObject->getTema() . "', '"
-                . $oValueObject->getFechaalta() . "', '"
-                . $oValueObject->getExtracto() . "', '"
-                . $oValueObject->getEstado() . "', '"
-                . $oValueObject->getOrganismoa() . "', '"
-                . $oValueObject->getDependenciaa() . "', '"
-                . $oValueObject->getOrganismod() . "', '"
-                . $oValueObject->getDependenciad() . "', '"
-                . $oValueObject->getConformado() . "'"
-                . ");";
-        if(mysql_query($sql)){
+        /* Primero compruebo que el dato no exista en la base. */
+        $sql ="SELECT COUNT(*) FROM vialidad "
+                . " WHERE identificador = '" . $oValueObject->getIdentificador() ."'"
+                . " AND fechaalta = '". $oValueObject->getFechaalta() . "';";
+        $resultado = mysql_query($sql);
+        $resultado = mysql_fetch_array($resultado);
+        if($resultado[0] > 0){
             return TRUE;
         } else {
-            return FALSE;
+            $sql = "INSERT INTO vialidad (identificador, tipotramite, tema, "
+                    . "fechaalta, extracto, estado, organismoa, dependenciaa, "
+                    . "organismod, dependenciad, conformado) VALUES ('"
+                    . $oValueObject->getIdentificador() . "', '"
+                    . $oValueObject->getTipotramite() . "', '"
+                    . $oValueObject->getTema() . "', '"
+                    . $oValueObject->getFechaalta() . "', '"
+                    . $oValueObject->getExtracto() . "', '"
+                    . $oValueObject->getEstado() . "', '"
+                    . $oValueObject->getOrganismoa() . "', '"
+                    . $oValueObject->getDependenciaa() . "', '"
+                    . $oValueObject->getOrganismod() . "', '"
+                    . $oValueObject->getDependenciad() . "', '"
+                    . $oValueObject->getConformado() . "'"
+                    . ");";
+            if(mysql_query($sql)){
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         }
     }
 }
