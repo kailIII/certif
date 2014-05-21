@@ -10,7 +10,7 @@ $oMysql->conectar();
         <meta charset="UTF-8">
         <title>Expediente - Certificados</title>
         <?php include_once "../includes/php/estilos.php"; ?>
-        <!--<script type="text/javascript" src="js/funciones.js"></script>-->
+        <script type="text/javascript" src="js/funciones.js"></script>
     </head>
     <body>
         <?php include_once "../includes/php/header.php"; ?>
@@ -34,6 +34,7 @@ $oMysql->conectar();
 
                 /* Falta mostrar el nombre de la obra */
                 ?>
+                
                 <table class="table table-striped table-bordered table-hover">
 <!--                    <tr>
                         <td colspan="10" class="success"><?php // echo utf8_encode($oObra->getDenominacion()); ?></td>
@@ -84,10 +85,16 @@ $oMysql->conectar();
                     <?php
                     }
                     ?>
+                    <tr>
+                        <td><div id="fecha"></div></td>
+                        <td><div id="depen"></div></td>
+                        <td><div id="comen"></div></td>
+                    </tr>
                 </table>
             </div>
+            <div id="divResultado"></div>
+            <script> busquedaExpediente(<?php echo "'".$oExpediente[0]->getExpDnv()."'"; ?>); </script>
         </div>
-        <div id="divResultado"></div>
         <?php include_once "../includes/php/footer.php";?>
         <?php include_once "../includes/php/flatui_js.php";?>
     </body>
