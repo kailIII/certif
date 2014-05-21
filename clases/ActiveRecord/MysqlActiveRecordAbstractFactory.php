@@ -11,6 +11,7 @@ require_once '../clases/ActiveRecord/MysqlComitenteActiveRecord.php';
 require_once '../clases/ActiveRecord/MysqlVialidadActiveRecord.php';
 require_once '../clases/ActiveRecord/MysqlExpedienteActiveRecord.php';
 require_once '../clases/ActiveRecord/MysqlExpHistoriaActiveRecord.php';
+require_once '../clases/ActiveRecord/MysqlDependenciaActiveRecord.php';
 
 /**
 * Clase que nos permite conectar al motor MySQL y crear objetos
@@ -137,5 +138,13 @@ class MysqlActiveRecordAbstractFactory extends ActiveRecordAbstractFactory
    */
    public function getExpHistotiaActiveRecord() {
       return new MysqlExpHistoriaActiveRecord();
+   }
+   /**
+   * Nos permite obtener un objeto de tipo MysqlDependenciaaActiveRecord.
+   * 
+   * @return MysqlDependenciaActiveRecord
+   */
+   public function getDependenciaActiveRecord() {
+      return new MysqlDependenciaActiveRecord();
    }
 }

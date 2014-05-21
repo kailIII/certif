@@ -33,12 +33,22 @@ $oMysql->conectar();
                 $oExpediente = $oMysqlExpediente->buscarPorExpediente($oExpediente);
 
                 /* Falta mostrar el nombre de la obra */
+                $oMysqlCertificacion = $oMysql->getCertificacionActiveRecord();
+                $oCertificacion = new CertificacionValueObject();
+                $oCertificacion->setId($oExpediente[0]->getIdCertificacion());
+                $oCertificacion = $oMysqlCertificacion->buscar($oCertificacion);
+                
+                $oMysqlObra = $oMysql->getObrasEjecutadasActiveRecord();
+                $oObra = new ObrasEjecutadasValueObject();
+                
+                $oObra->setID($oCertificacion->getIdObra());
+                $oObra = $oMysqlObra->buscar($oObra);
                 ?>
                 
                 <table class="table table-striped table-bordered table-hover">
-<!--                    <tr>
-                        <td colspan="10" class="success"><?php // echo utf8_encode($oObra->getDenominacion()); ?></td>
-                    </tr>-->
+                    <tr>
+                        <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion()); ?></td>
+                    </tr>
                     <tr>
                         <th>Certificado DPV</th>
                         <th>Certificado DNV</th>

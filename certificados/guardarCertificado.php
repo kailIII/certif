@@ -59,6 +59,20 @@ if(isset($_POST['nrocert'])){
         $error ++;
     }
 }
+
+$oMysqlDependencia = $oMysql->getDependenciaActiveRecord();
+$oDependencia = new DependenciaValueObject();
+$oDependencia->setDependencia($_POST['dependenciaExpediente']);
+
+if(!$oMysqlDependencia->guardar($oDependencia)){
+    $error ++;
+} else {
+    echo 'Tincho Dependencia -> ' . $oDependencia->getIddependencia();
+    echo 'Tincho Dependencia -> ' . $oDependencia->getDependencia();
+}
+
+
+
 /* Seteo los datos del expediente. */
 $oMysqlExpediente = $oMysql->getExpedienteActiveRecord();
 $oExpediente = new ExpedienteValueObject();
@@ -68,7 +82,8 @@ $oExpediente->setCertDnv($_POST['dnvCertificado']);
 $oExpediente->setExpDpv($_POST['dpvExpediente']);
 $oExpediente->setExpDnv($_POST['dnvExpediente']);
 $oExpediente->setMes($_POST['mesExpediente']);
-$oExpediente->setDependencia($_POST['dependenciaExpediente']);
+$oExpediente->setDependencia($oDependencia->getIddependencia());
+//$oExpediente->setDependencia($_POST['dependenciaExpediente']);
 $oExpediente->setImporte($_POST['importeExpediente']);
 $oExpediente->setVencimiento($_POST['vencimientoExpediente']);
 $oExpediente->setCedido($_POST['cedidoExpediente']);
@@ -102,8 +117,10 @@ if(!$oMysqlVialidad->guardar($oVialidad)){
 $oMysqlExpHistoria = $oMysql->getExpHistotiaActiveRecord();
 $oExpHistoria = new ExpHistoriaValueObject();
 $oExpHistoria->setComentario($_POST['comentarioExpediente']);
-$oExpHistoria->setDependencia($_POST['dependenciaExpediente']);
-$oExpHistoria->setFecha($_POST['fechaalta']);
+$oExpHistoria->setDependencia($oDependencia->getIddependencia());
+//$oExpHistoria->setDependencia($_POST['dependenciaExpediente']);
+//$oExpHistoria->setFecha($_POST['fechaalta']);
+$oExpHistoria->setFecha(date('Y-m-d'));
 $oExpHistoria->setIdexpediente($oExpediente->getIdexpediente());
 if(!$oMysqlExpHistoria->guardar($oExpHistoria)){
     $error ++;

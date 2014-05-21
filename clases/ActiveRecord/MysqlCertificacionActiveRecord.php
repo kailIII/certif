@@ -1,6 +1,6 @@
 <?php
 include_once '../clases/ActiveRecord/activeRecordInterface.php';
-include_once '../clases/ValueObject/ObrasEjecutadasValueObject.php';
+include_once '../clases/ValueObject/CertificacionValueObject.php';
 /**
  * Description of MysqlCertificacionActiveRecord
  *
