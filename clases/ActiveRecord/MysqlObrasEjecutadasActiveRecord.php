@@ -245,6 +245,14 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
      * @return boolean
      */
     public function guardarDenominacion($oValueObject) {
+        $sql = "SELECT id FROM obrasejecutadas WHERE denominacion = '"
+                    . $oValueObject->getDenominacion() . "';";
+        $resultado = mysql_query($sql) or die(mysql_error());
+        if($resultado){
+            $fila = mysql_fetch_object($resultado);
+            $oValueObject->setID($fila->id);
+            return TRUE;
+        }
         $sql = "INSERT INTO obrasejecutadas (denominacion) VALUES('"
                 . utf8_decode($oValueObject->getDenominacion()) ."')";
         $resultado = mysql_query($sql) or die(mysql_error());
