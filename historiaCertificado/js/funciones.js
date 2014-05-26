@@ -29,25 +29,32 @@ function busquedaExpediente(expediente){
             divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Guardando los datos...</center>';
         } else if (ajax.readyState===4) {
             divResultado.innerHTML = ajax.responseText;
-//            document.getElementById('dnvExpediente').value = document.getElementById('h_01').value;
-//            document.getElementById('').value = document.getElementById('h_02').value;
-//            document.getElementById('').value = document.getElementById('h_03').value;
-//            document.getElementById('fecha').innerHTML = document.getElementById('h_04').value;
-            document.getElementById('comen').innerHTML = document.getElementById('h_05').value;
-//            document.getElementById('').value = document.getElementById('h_06').value;
-//            document.getElementById('').value = document.getElementById('h_07').value;
-            document.getElementById('depen').innerHTML = document.getElementById('h_08').value;
-//            document.getElementById('').value = document.getElementById('h_09').value;
-//            document.getElementById('').value = document.getElementById('h_10').value;
-//            document.getElementById('').value = document.getElementById('h_11').value;
-            var fecha = document.getElementById('h_04').value.split('/');
-            if(fecha[0].length === 1){
-                fecha[0] = '0'+fecha[0];
+            if(document.getElementById('h_08').value === document.getElementById('ultimo').value){
+                alert ('El expediente no ha sufrido movimientos.');
+            } else {
+//                document.getElementById('dnvExpediente').value = document.getElementById('h_01').value;
+//                document.getElementById('').value = document.getElementById('h_02').value;
+//                document.getElementById('').value = document.getElementById('h_03').value;
+//                document.getElementById('fecha').innerHTML = document.getElementById('h_04').value;
+                document.getElementById('comen').innerHTML = document.getElementById('h_05').value;
+//                document.getElementById('').value = document.getElementById('h_06').value;
+//                document.getElementById('').value = document.getElementById('h_07').value;
+                document.getElementById('depen').innerHTML = document.getElementById('h_08').value;
+//                document.getElementById('').value = document.getElementById('h_09').value;
+//                document.getElementById('').value = document.getElementById('h_10').value;
+//                document.getElementById('').value = document.getElementById('h_11').value;
+//                var fecha = document.getElementById('h_04').value.split('/');
+                var f = new Date();
+                var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+                fecha = fecha.split('/');
+                if(fecha[0].length === 1){
+                    fecha[0] = '0'+fecha[0];
+                }
+                if(fecha[1].length === 1){
+                    fecha[1] = '0'+fecha[1];
+                }
+                document.getElementById('fecha').innerHTML = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
             }
-            if(fecha[1].length === 1){
-                fecha[1] = '0'+fecha[1];
-            }
-            document.getElementById('fecha').innerHTML = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
         }
     };
     ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -87,4 +94,8 @@ function soloNumeros(evt){
     } else {
         return false;
     }
+}
+
+function habilita(id){
+    alert(id);
 }

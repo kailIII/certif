@@ -67,7 +67,10 @@ $oMysql->conectar();
                         <td><?php echo $oExpediente[0]->getMes(); ?></td>
                         <td><?php echo $oExpediente[0]->getImporte(); ?></td>
                         <td><?php echo $oExpediente[0]->getVencimiento(); ?></td>
-                        <td><?php echo $oExpediente[0]->getCedido(); ?></td>
+                        <td>
+                            <input type="text" id="cedido" name="cedido" 
+                                   value="<?php echo $oExpediente[0]->getCedido(); ?>" ondblclick="habilita(this.id)"/>
+                        </td>
                     </tr>
                 </table>
                 <?php
@@ -93,6 +96,7 @@ $oMysql->conectar();
                         <td><?php echo $historia->getComentario(); ?></td>
                     </tr>
                     <?php
+                    $ultimo = $historia->getDependencia();
                     }
                     ?>
                     <tr>
@@ -101,6 +105,10 @@ $oMysql->conectar();
                         <td><div id="comen"></div></td>
                     </tr>
                 </table>
+                <input type="hidden" value="<?php echo $ultimo; ?>" id="ultimo" />
+                <div class="span3">
+                    <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
+                </div>
             </div>
             <div id="divResultado"></div>
             <script> busquedaExpediente(<?php echo "'".$oExpediente[0]->getExpDnv()."'"; ?>); </script>
