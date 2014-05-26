@@ -18,7 +18,7 @@
                                   <li><a href="#fakelink">Bajas</a></li>
                                 </ul>  /Sub menu Licitaciones 
                             </li>-->
-                            <li>
+<!--                            <li>
                               <a href="#fakelink">
                                 Obras
                               </a>
@@ -27,8 +27,8 @@
                                   <li><a href="#fakelink">Modificaciones</a></li>
                                   <li><a href="#fakelink">Bajas</a></li>
                                   <li><a href="../obras/listado.php">Listado</a></li>
-                                </ul> <!-- /Sub menu obras -->
-                            </li>
+                                </ul>  /Sub menu obras 
+                            </li>-->
                             <li>
                               <a href="#fakelink">
                                 Certificados

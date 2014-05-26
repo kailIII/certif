@@ -28,7 +28,8 @@ class MysqlExpHistoriaActiveRecord implements ActiveRecord {
 //        $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%d/%m/%Y') as fecha, dependencia, comentario "
         $sql = "SELECT idexpediente, DATE_FORMAT(fecha, '%Y-%m-%d') as fecha, dependencia, comentario "
                 . "FROM exphistoria WHERE idexpediente = " 
-                . $oValueObject->getIdexpediente();
+                . $oValueObject->getIdexpediente()
+                . " ORDER BY fecha DESC;";
         $resultado = mysql_query($sql);
         if($resultado){
             $aExpediente = array();

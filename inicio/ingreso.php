@@ -20,7 +20,8 @@ if( $_POST["aceptar"] === "Ingreso" ){
         $_SESSION['perfil'] = $oUsuario->getPerfil();
         $_SESSION['login']="Ok";
         
-        header("location: inicio.php");
+//        header("location: inicio.php");
+        header("location: ../listaCertificado");
     } else {
         $_SESSION['usuario'] = "Desconocido";
         $_SESSION['nombre'] =  "Desconocido";
@@ -37,4 +38,3 @@ if( $_POST["aceptar"] === "Ingreso" ){
     $_SESSION['login']="Acceso Incorrecto";
     header("location: index.php");
 }
-?>

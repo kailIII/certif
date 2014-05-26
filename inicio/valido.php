@@ -9,4 +9,3 @@ if($_SESSION['login'] !== "Ok"){
     $_SESSION['login']="Acceso Incorrecto";
     header("location: ../inicio/index.php");
 }
-?>

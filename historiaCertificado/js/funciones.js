@@ -26,7 +26,7 @@ function busquedaExpediente(expediente){
     ajax.open("POST", "busqueda.php" ,true);
     ajax.onreadystatechange=function() {
         if (ajax.readyState === 1) {
-            divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Guardando los datos...</center>';
+            divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Actualizando los datos...</center>';
         } else if (ajax.readyState===4) {
             divResultado.innerHTML = ajax.responseText;
             if(document.getElementById('h_08').value === document.getElementById('ultimo').value){
@@ -98,4 +98,31 @@ function soloNumeros(evt){
 
 function habilita(id){
     alert(id);
+}
+
+function guardarDatos(){
+    var comen = document.getElementById('comen').innerHTML;
+    var depen = document.getElementById('depen').innerHTML;
+    var fecha = document.getElementById('fecha').innerHTML;
+    var idexp = document.getElementById('idexpe').value;
+    var divResultado = document.getElementById('divResultado');
+
+    ajax=objetoAjax();
+    //usando del medoto POST archivo que realizará la operacion
+    ajax.open("POST", "guardarDatos.php" ,true);
+    ajax.onreadystatechange=function() {
+        if (ajax.readyState===1) {
+//            divResultado.innerHTML= '<center><img src="../imag1es/cargando.gif"><br/>Guardando los datos...</center>';
+        } else if (ajax.readyState===4) {
+            //mostrar los nuevos registros en esta capa
+            divResultado.innerHTML = ajax.responseText;
+        }
+    };
+    //muy importante este encabezado ya que hacemos uso de un formulario
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    //enviando los valores
+    ajax.send("idexpediente="+idexp
+            +"&fecha="+fecha
+            +"&dependencia="+depen
+            +"&comentario="+comen);
 }

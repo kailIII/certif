@@ -44,7 +44,7 @@ $oMysql->conectar();
                 $oObra->setID($oCertificacion->getIdObra());
                 $oObra = $oMysqlObra->buscar($oObra);
                 ?>
-                
+                <input type="hidden" id="idexpe" name="idexpe" value="<?php echo $_GET['id']; ?>" />
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion()); ?></td>
@@ -87,23 +87,30 @@ $oMysql->conectar();
                         <th>Dependencia</th>
                         <th>Comentario</th>
                     </tr>
+                    <tr class="">
+                        <td><div id="fecha"></div></td>
+                        <td><div id="depen"></div></td>
+                        <td><div id="comen"></div></td>
+                    </tr>
                     <?php
+                    $oMysqlDependencia = $oMysql->getDependenciaActiveRecord();
+                    $oDependencia = new DependenciaValueObject();
                     foreach ($oExpHistoria as $historia) {
+                        /* Busco el identificador de la dependencia. */
+                        $oDependencia->setIddependencia($historia->getDependencia());
+                        if(!$oMysqlDependencia->buscar($oDependencia)){
+                            $oDependencia->setDependencia('Desconocido');
+                        }
                     ?>
                     <tr>
                         <td><?php echo $historia->getFecha(); ?></td>
-                        <td><?php echo $historia->getDependencia(); ?></td>
+                        <td><?php echo $oDependencia->getDependencia(); ?></td>
                         <td><?php echo $historia->getComentario(); ?></td>
                     </tr>
                     <?php
                     $ultimo = $historia->getDependencia();
                     }
                     ?>
-                    <tr>
-                        <td><div id="fecha"></div></td>
-                        <td><div id="depen"></div></td>
-                        <td><div id="comen"></div></td>
-                    </tr>
                 </table>
                 <input type="hidden" value="<?php echo $ultimo; ?>" id="ultimo" />
                 <div class="span3">
