@@ -58,7 +58,7 @@ class MysqlVialidadActiveRecord implements ActiveRecord {
         } else {
             $sql = "INSERT INTO vialidad (identificador, tipotramite, tema, "
                     . "fechaalta, extracto, estado, organismoa, dependenciaa, "
-                    . "organismod, dependenciad, conformado) VALUES ('"
+                    . "organismod, dependenciad, conformado, idexpediente) VALUES ('"
                     . $oValueObject->getIdentificador() . "', '"
                     . $oValueObject->getTipotramite() . "', '"
                     . $oValueObject->getTema() . "', '"
@@ -69,7 +69,8 @@ class MysqlVialidadActiveRecord implements ActiveRecord {
                     . $oValueObject->getDependenciaa() . "', '"
                     . $oValueObject->getOrganismod() . "', '"
                     . $oValueObject->getDependenciad() . "', '"
-                    . $oValueObject->getConformado() . "'"
+                    . $oValueObject->getConformado() . "', "
+                    . $oValueObject->getIdexpediente()
                     . ");";
             if(mysql_query($sql)){
                 return TRUE;

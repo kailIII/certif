@@ -101,12 +101,35 @@ function habilita(id){
 }
 
 function guardarDatos(){
+    /* Busco los datos relacionados con el historial del expediente. */
     var comen = document.getElementById('comen').innerHTML;
     var depen = document.getElementById('depen').innerHTML;
     var fecha = document.getElementById('fecha').innerHTML;
     var idexp = document.getElementById('idexpe').value;
     var divResultado = document.getElementById('divResultado');
 
+    /* Busco los datos que se grabaran en la tabla vialidad. */
+    var identificador = document.getElementById('h_01').value;
+    var tipotramite = document.getElementById('h_02').value;
+    var tema = document.getElementById('h_03').value;
+    var fechaalta = document.getElementById('h_04').value;
+    var fechaalta_ = fechaalta.split('/');
+    fechaalta = fechaalta_[2]+'-'+fechaalta_[1]+'-'+fechaalta_[0];
+    var extracto = document.getElementById('h_05').value;
+    var estado = document.getElementById('h_06').value;
+    var organismoa = document.getElementById('h_07').value;
+    var dependenciaa = document.getElementById('h_08').value;
+    var organismod = document.getElementById('h_09').value;
+    var dependenciad = document.getElementById('h_10').value;
+    var conformado = document.getElementById('h_11').value;
+    var vialidad = "&identificador="+identificador+"&tipotramite="+tipotramite
+            +"&tema="+tema+"&fechaalta="+fechaalta
+            +"&extracto="+extracto+"&estado="+estado
+            +"&organismoa="+organismoa+"&dependenciaa="+dependenciaa
+            +"&organismod="+organismod+"&dependenciad="+dependenciad
+            +"&conformado="+conformado;
+    /* Fin de la recoleccion de los datos. */
+    
     ajax=objetoAjax();
     //usando del medoto POST archivo que realizará la operacion
     ajax.open("POST", "guardarDatos.php" ,true);
@@ -124,5 +147,6 @@ function guardarDatos(){
     ajax.send("idexpediente="+idexp
             +"&fecha="+fecha
             +"&dependencia="+depen
-            +"&comentario="+comen);
+            +"&comentario="+comen
+            +vialidad);
 }

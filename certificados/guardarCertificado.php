@@ -66,10 +66,11 @@ $oDependencia->setDependencia($_POST['dependenciaExpediente']);
 
 if(!$oMysqlDependencia->guardar($oDependencia)){
     $error ++;
-} else {
-    echo 'Tincho Dependencia -> ' . $oDependencia->getIddependencia();
-    echo 'Tincho Dependencia -> ' . $oDependencia->getDependencia();
 }
+// else {
+//    echo 'Tincho Dependencia -> ' . $oDependencia->getIddependencia();
+//    echo 'Tincho Dependencia -> ' . $oDependencia->getDependencia();
+//}
 
 
 
