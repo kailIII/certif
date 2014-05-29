@@ -1,4 +1,5 @@
-<?php 
+<?php
+include_once '../inicio/valido.php';
 // Se requieren los script para acceder a los datos de la DB
 require_once '../clases/ActiveRecord/ActiveRecordAbstractFactory.php';
 
@@ -104,9 +105,15 @@ $oMysql->conectar();
                         </fieldset>
                         <br />
                         <div align="center">
-                            <input type="button" class="button" name="Submit" value="&nbsp;&nbsp;Registrar&nbsp;&nbsp;" onclick="nuevoUsuario()">
-                            <input type="reset" class="button" value="&nbsp;&nbsp;Limpiar&nbsp;&nbsp;">
-                            <div id="falta_dato" class="falta_dato" style="display:inline"></div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-3">
+                                    <input type="button" name="Submit" value="&nbsp;&nbsp;Registrar&nbsp;&nbsp;" onclick="nuevoUsuario()" class="btn btn-large btn-block btn-primary" />
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="reset" value="&nbsp;&nbsp;Limpiar&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" />
+                                </div>
+                                <div id="falta_dato" class="falta_dato" style="display:inline"></div>
+                            </div>
                         </div>
                         <div id="resultado"></div>
                     </div>
