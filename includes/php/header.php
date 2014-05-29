@@ -46,7 +46,7 @@
                               </a>
                                 <ul>
                                   <li><a href="../usuarios/index.php">Altas</a></li>
-                                  <li><a href="#fakelink">Modificaciones</a></li>
+                                  <li><a href="../usuarios/listaUsuario.php">Modificaciones</a></li>
                                   <li><a href="#fakelink">Bajas</a></li>
                                 </ul> <!-- /Sub menu Certificados -->
                             </li>

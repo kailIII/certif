@@ -13,7 +13,7 @@ $oMysql->conectar();
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gesti&oacute;n de Usuarios</title>
         <link rel="shortcut icon" href="../images/ingreso.ico" />
-        <link rel="stylesheet" href="../css/plantilla.css" type="text/css"  media="screen" />
+        <!--<link rel="stylesheet" href="../css/plantilla.css" type="text/css"  media="screen" />-->
         <?php include_once "../includes/php/estilos.php";?>
         <script type="text/javascript" src="js/validacion.js"></script>
     </head>
