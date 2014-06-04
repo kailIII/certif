@@ -20,7 +20,7 @@ function busquedaExpediente(expediente){
         expediente = expediente.split('/');
     }
 
-    var divResultado = document.getElementById('divResultado');
+    var divResultado = document.getElementById('divResultado1');
     divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Actualizando los datos...</center>';
     ajax=objetoAjax();
     ajax.open("POST", "busqueda.php" ,true);
@@ -29,9 +29,8 @@ function busquedaExpediente(expediente){
             divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Actualizando los datos...</center>';
         } else if (ajax.readyState===4) {
             divResultado.innerHTML = ajax.responseText;
-//            if(document.getElementById('h_08').value === document.getElementById('ultimo').value){
             if(document.getElementById('dependencia').value === document.getElementById('h_08').value){
-                alert ('El expediente no ha sufrido movimientos.');
+                document.getElementById('divResultado').innerHTML = "<a href='../listaCertificado/' class='form-control'>El expediente no ha sufrido movimientos.</a>";
             } else if(document.getElementById('dependencia').value !== document.getElementById('h_08').value){
                 document.getElementById('comen').innerHTML = document.getElementById('h_05').value;
                 document.getElementById('depen').innerHTML = document.getElementById('h_08').value;
@@ -46,8 +45,11 @@ function busquedaExpediente(expediente){
                 }
                 document.getElementById('fecha').innerHTML = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
                 document.getElementById('actual').style.display = '';
+                guardarDatos();
             }
         }
+        divResultado.style.display = 'none';
+//        document.getElementById('divResultado1').style.display = 'none';
     };
     ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     

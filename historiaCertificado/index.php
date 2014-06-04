@@ -110,18 +110,17 @@ $oMysql->conectar();
                     </tr>
                     <?php
                     if($dependencia === '')
-                        $dependencia = $oDependencia->getDependencia ();
-                    $ultimo = $historia->getDependencia();
+                        $dependencia = $oDependencia->getDependencia();
                     }
                     ?>
                 </table>
                 <input type="hidden" value="<?php echo $dependencia; ?>" id="dependencia" />
-                <input type="hidden" value="<?php echo $ultimo; ?>" id="ultimo" />
                 <div class="span3">
                     <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
                 </div>
             </div>
             <div id="divResultado"></div>
+            <div id="divResultado1"></div>
             <script> busquedaExpediente(<?php echo "'".$oExpediente[0]->getExpDnv()."'"; ?>); </script>
         </div>
         <?php include_once "../includes/php/footer.php";?>

@@ -60,7 +60,7 @@ if($error == 0) {
     $oVialidad->setDependenciad($_POST['dependenciad']);
     $oVialidad->setConformado($_POST['conformado']);
     $oVialidad->setIdexpediente($_POST['idexpediente']);
-
+    
     if(!$oMysqlVialidad->guardar($oVialidad)){
         $error = 3;
     }
