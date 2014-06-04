@@ -29,21 +29,12 @@ function busquedaExpediente(expediente){
             divResultado.innerHTML = '<center><img src="../images/todo/preload.GIF"><br/>Actualizando los datos...</center>';
         } else if (ajax.readyState===4) {
             divResultado.innerHTML = ajax.responseText;
-            if(document.getElementById('h_08').value === document.getElementById('ultimo').value){
+//            if(document.getElementById('h_08').value === document.getElementById('ultimo').value){
+            if(document.getElementById('dependencia').value === document.getElementById('h_08').value){
                 alert ('El expediente no ha sufrido movimientos.');
-            } else {
-//                document.getElementById('dnvExpediente').value = document.getElementById('h_01').value;
-//                document.getElementById('').value = document.getElementById('h_02').value;
-//                document.getElementById('').value = document.getElementById('h_03').value;
-//                document.getElementById('fecha').innerHTML = document.getElementById('h_04').value;
+            } else if(document.getElementById('dependencia').value !== document.getElementById('h_08').value){
                 document.getElementById('comen').innerHTML = document.getElementById('h_05').value;
-//                document.getElementById('').value = document.getElementById('h_06').value;
-//                document.getElementById('').value = document.getElementById('h_07').value;
                 document.getElementById('depen').innerHTML = document.getElementById('h_08').value;
-//                document.getElementById('').value = document.getElementById('h_09').value;
-//                document.getElementById('').value = document.getElementById('h_10').value;
-//                document.getElementById('').value = document.getElementById('h_11').value;
-//                var fecha = document.getElementById('h_04').value.split('/');
                 var f = new Date();
                 var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
                 fecha = fecha.split('/');
@@ -54,6 +45,7 @@ function busquedaExpediente(expediente){
                     fecha[1] = '0'+fecha[1];
                 }
                 document.getElementById('fecha').innerHTML = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+                document.getElementById('actual').style.display = '';
             }
         }
     };

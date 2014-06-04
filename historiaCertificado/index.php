@@ -87,12 +87,13 @@ $oMysql->conectar();
                         <th>Dependencia</th>
                         <th>Comentario</th>
                     </tr>
-                    <tr class="">
+                    <tr id="actual" style="display: none;">
                         <td><div id="fecha"></div></td>
                         <td><div id="depen"></div></td>
                         <td><div id="comen"></div></td>
                     </tr>
                     <?php
+                    $dependencia = "";
                     $oMysqlDependencia = $oMysql->getDependenciaActiveRecord();
                     $oDependencia = new DependenciaValueObject();
                     foreach ($oExpHistoria as $historia) {
@@ -108,10 +109,13 @@ $oMysql->conectar();
                         <td><?php echo $historia->getComentario(); ?></td>
                     </tr>
                     <?php
+                    if($dependencia === '')
+                        $dependencia = $oDependencia->getDependencia ();
                     $ultimo = $historia->getDependencia();
                     }
                     ?>
                 </table>
+                <input type="hidden" value="<?php echo $dependencia; ?>" id="dependencia" />
                 <input type="hidden" value="<?php echo $ultimo; ?>" id="ultimo" />
                 <div class="span3">
                     <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
