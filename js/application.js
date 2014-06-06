@@ -26,6 +26,7 @@ String.prototype.repeat = function(num) {
     $("select[name='huge']").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
     $("select[name='tipocertf']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
     $("select[name='perfil']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
+    $("select[name='nombreobra']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
     $("select[name='info']").selectpicker({style: 'btn-info'});
 
     // Show and create tooltip first so we can apply the data-tooltip-style

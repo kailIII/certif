@@ -48,6 +48,30 @@ class MysqlExpHistoriaActiveRecord implements ActiveRecord {
         }
     }
 
+    /**
+     * 
+     * @param ExpHistoriaValueObject $oValueObject
+     * @return boolean|\ExpHistoriaValueObject
+     */
+    public function buscarUltimo($oValueObject) {
+        $sql = 'SELECT dependencia FROM exphistoria '
+                . 'WHERE idexpediente = ' . $oValueObject->getIdexpediente()
+                . ' AND fecha = (SELECT MAX(e1.fecha) as fecha '
+                . 'FROM exphistoria e1 '
+                . 'WHERE e1.idexpediente = '. $oValueObject->getIdexpediente().');';
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $fila = mysql_fetch_object($resultado);
+//            $oValueObject->setIdexpediente($fila->idexpediente);
+            $oValueObject->setFecha($fila->fecha);
+            $oValueObject->setDependencia($fila->dependencia);
+            $oValueObject->setComentario($fila->comentario);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function buscarTodo() {
         
     }

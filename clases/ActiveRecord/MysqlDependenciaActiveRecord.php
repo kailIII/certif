@@ -56,9 +56,28 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
             return FALSE;
         }
     }
-
+    
+   /**
+    * 
+    * @return boolean
+    */
     public function buscarTodo() {
-        
+        $sql = 'SELECT * FROM dependencia;';
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $aDependencia = array();
+            while ($fila = mysql_fetch_object($resultado)){
+                $oValueObject = new DependenciaValueObject();
+                $oValueObject->setIddependencia($fila->iddependencia);
+                $oValueObject->setDias($fila->dias);
+                $oValueObject->setDependencia($fila->dependencia);
+                $aDependencia[] = $oValueObject;
+                unset($oValueObject);
+            }
+            return $aDependencia;
+        } else {
+            return false;
+        }
     }
 
     public function contar() {
@@ -95,6 +114,11 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
                 . "7);";
 //                . $oValueObject->getDias() .")";
             if(mysql_query($sql)){
+                $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");
+                $id = mysql_fetch_array($result);
+                if($id[0]<>0) {
+                    $oValueObject->setIddependencia($id[0]);
+                }
                 return TRUE;
             } else {
                 return FALSE;

@@ -19,7 +19,7 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
         $sql.= ", expDpv = '" . $oValueObject->getExpDpv() . "'";
         $sql.= ", expDnv = '" . $oValueObject->getExpDnv() . "'"
                 . ", mes = '" . $oValueObject->getMes() . "'"
-                . ", dependencia = " . $oValueObject->getDependencia()
+//                . ", dependencia = " . $oValueObject->getDependencia()
                 . ", comentario = '" . $oValueObject->getComentario() . "'"
                 . ", importe = '" . $oValueObject->getImporte() . "'"
                 . ", vencimiento = '" . $oValueObject->getVencimiento() . "'"
@@ -72,7 +72,7 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
                 $oExpediente->setExpDpv($fila->expDpv);
                 $oExpediente->setExpDnv($fila->expDnv);
                 $oExpediente->setMes($fila->mes);
-                $oExpediente->setDependencia($fila->dependencia);
+//                $oExpediente->setDependencia($fila->dependencia);
                 $oExpediente->setComentario($fila->comentario);
                 $oExpediente->setImporte($fila->importe);
                 $oExpediente->setVencimiento($fila->vencimiento);
@@ -106,7 +106,7 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
                 $oExpediente->setExpDpv($fila->expDpv);
                 $oExpediente->setExpDnv($fila->expDnv);
                 $oExpediente->setMes($fila->mes);
-                $oExpediente->setDependencia($fila->dependencia);
+//                $oExpediente->setDependencia($fila->dependencia);
                 $oExpediente->setComentario($fila->comentario);
                 $oExpediente->setImporte($fila->importe);
                 $oExpediente->setVencimiento($fila->vencimiento);
@@ -138,7 +138,7 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
                 $oExpediente->setExpDpv($fila->expDpv);
                 $oExpediente->setExpDnv($fila->expDnv);
                 $oExpediente->setMes($fila->mes);
-                $oExpediente->setDependencia($fila->dependencia);
+//                $oExpediente->setDependencia($fila->dependencia);
                 $oExpediente->setComentario($fila->comentario);
                 $oExpediente->setImporte($fila->importe);
                 $oExpediente->setVencimiento($fila->vencimiento);
@@ -222,7 +222,7 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
                 $oExpediente->setExpDpv($fila->expDpv);
                 $oExpediente->setExpDnv($fila->expDnv);
                 $oExpediente->setMes($fila->mes);
-                $oExpediente->setDependencia($fila->dependencia);
+//                $oExpediente->setDependencia($fila->dependencia);
                 $oExpediente->setComentario($fila->comentario);
                 $oExpediente->setImporte($fila->importe);
                 $oExpediente->setVencimiento($fila->vencimiento);
@@ -251,14 +251,15 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
      */
     public function guardar($oValueObject) {
         $sql = "INSERT INTO expediente (idCertificacion, certDpv, certDnv, expDpv,";
-        $sql.= " expDnv, mes, dependencia, comentario, importe, vencimiento, cedido)";
+        $sql.= " expDnv, mes, comentario, importe, vencimiento, cedido)";
+//        $sql.= " expDnv, mes, dependencia, comentario, importe, vencimiento, cedido)";
         $sql.= " VALUE(" . $oValueObject->getIdCertificacion() ;
         $sql.= ", '" . $oValueObject->getCertDpv() . "'";
         $sql.= ", '" . $oValueObject->getCertDnv() . "'";
         $sql.= ", '" . $oValueObject->getExpDpv() . "'";
         $sql.= ", '" . $oValueObject->getExpDnv() . "'";
         $sql.= ", '" . $oValueObject->getMes() . "'";
-        $sql.= ", '" . $oValueObject->getDependencia() . "'";
+//        $sql.= ", '" . $oValueObject->getDependencia() . "'";
         $sql.= ", '" . $oValueObject->getComentario() . "'";
         $sql.= ", '" . $oValueObject->getImporte() . "'";
         $sql.= ", '" . $oValueObject->getVencimiento() . "'";
@@ -266,7 +267,6 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
         $sql.=");";
         $resultado = mysql_query($sql) or die(mysql_error());
         if($resultado){
-//            if(mysql_query($sql)){
             $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");
             $id = mysql_fetch_array($result);
             if($id[0]<>0) {
@@ -278,16 +278,5 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
         } else {
             return false;
         }
-//            $sql = "SELECT idexpediente FROM expediente WHERE idCertificacion = '"
-//                    . $oValueObject->getIdCertificacion() . "';";
-//            $resultado = mysql_query($sql) or die(mysql_error());
-//            if($resultado){
-//                $fila = mysql_fetch_object($resultado);
-//                $oValueObject->setIdexpediente($fila->idexpediente);
-//                return TRUE;
-//            }
-//        } else {
-//            return FALSE;
-//        }
     }
 }

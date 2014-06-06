@@ -250,8 +250,10 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
         $resultado = mysql_query($sql) or die(mysql_error());
         if($resultado){
             $fila = mysql_fetch_object($resultado);
-            $oValueObject->setID($fila->id);
-            return TRUE;
+            if($fila) {
+                $oValueObject->setID($fila->id);
+                return TRUE;
+            }
         }
         $sql = "INSERT INTO obrasejecutadas (denominacion) VALUES('"
                 . utf8_decode($oValueObject->getDenominacion()) ."')";

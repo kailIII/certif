@@ -45,10 +45,16 @@ $oMysql->conectar();
         $oMysqlCertificacion = $oMysql->getCertificacionActiveRecord();
         include_once '../clases/ValueObject/CertificacionValueObject.php';
         $oCertificacion = new CertificacionValueObject();
-//        
-//        $oMysqlObra = $oMysql->getObrasEjecutadasActiveRecord();
-//        
-//        $oExpediente = $oMysqlExpediente->buscarIdExpedientes();
+
+        /* Cargo todas las dependencias para poder consultarlas cuando necesite. */
+        $dependencia = array();
+//        $dependencia[0] = "DESCONOCIDO";
+        $oMysqlDependencia = $oMysql->getDependenciaActiveRecord();
+        $oDependencia = new DependenciaValueObject();
+        $oDependencia = $oMysqlDependencia->buscarTodo();
+        foreach ($oDependencia as $auxDep) {
+            $dependencia[$auxDep->getIddependencia()] = $auxDep->getDependencia();
+        }
         ?>
         <div class="container">
             <legend>Certificados</legend>
@@ -93,6 +99,11 @@ $oMysql->conectar();
                             $oExpediente1 = new ExpedienteValueObject();
                             $oExpediente1->setIdexpediente($expe->getIdexpediente());
                             $oExpediente1 = $oMysqlExpediente->buscarPorExpediente($oExpediente1);
+                            /* Muestro los datos del expediente en las tablas correspondientes.
+                             * Se busca en el historico el lugar acutal del expediente.
+                             * Si no se encuentra se carga la fecha actual del sistema
+                             * y se informa con dependencia desconocida.
+                             */
                             foreach ($oExpediente1 as $expediente) {
                                 unset($oMysqlExpHistoria);
                                 unset($oExpHistoria);
@@ -102,8 +113,10 @@ $oMysql->conectar();
                                 $oExpHistoria = $oMysqlExpHistoria->buscar($oExpHistoria);
                                 if($oExpHistoria){
                                     $diaTabla = new DateTime($oExpHistoria[0]->getFecha());
+                                    $dependenciaActual = $oExpHistoria[0]->getDependencia();
                                 } else {
                                     $diaTabla = new DateTime(date('Y-m-d'));
+                                    $dependenciaActual = 9999;
                                 }
                                 $diaHoy = new DateTime(date('Y-m-d'));
                                 $dias = $diaTabla->diff($diaHoy);
@@ -114,7 +127,8 @@ $oMysql->conectar();
                                     <td><?php echo $expediente->getExpDnv(); ?></td>
                                     <td><?php echo $expediente->getExpDpv(); ?></td>
                                     <td><?php echo $expediente->getMes(); ?></td>
-                                    <td><?php echo $expediente->getDependencia(); ?></td>
+                                    <!--<td><?php // echo $expediente->getDependencia(); ?></td>-->
+                                    <td><?php echo $dependencia[$dependenciaActual]; ?></td>
                                     <!--<td><?php // echo $expediente->getComentario(); ?></td>-->
                                     <td><?php echo $expediente->getImporte(); $total += $expediente->getImporte(); ?></td>
                                     <td><?php echo $expediente->getVencimiento(); ?></td>

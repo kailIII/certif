@@ -30,7 +30,7 @@ $error = 0;
 mysql_query('BEGIN;');
 /* 1° Guardo Obra */
 if(!$oMysqlObra->guardarDenominacion($oObra)) {
-    $error ++;
+    $error = 1;
 }
 
 $oMysqlCertificado = $oMysql->getCertificacionActiveRecord();
@@ -52,11 +52,11 @@ if(isset($_POST['nrocert'])){
     $oCertificado->setACobrar($_POST['acobrar']);
     $oCertificado->setComentario($_POST['comentarios']);
     if(!$oMysqlCertificado->guardar($oCertificado)){
-        $error ++;
+        $error = 2;
     }
 } else {
     if(!$oMysqlCertificado->guardarSolo($oCertificado)){
-        $error ++;
+        $error = 3;
     }
 }
 
@@ -65,14 +65,8 @@ $oDependencia = new DependenciaValueObject();
 $oDependencia->setDependencia($_POST['dependenciaExpediente']);
 
 if(!$oMysqlDependencia->guardar($oDependencia)){
-    $error ++;
+    $error = 4;
 }
-// else {
-//    echo 'Tincho Dependencia -> ' . $oDependencia->getIddependencia();
-//    echo 'Tincho Dependencia -> ' . $oDependencia->getDependencia();
-//}
-
-
 
 /* Seteo los datos del expediente. */
 $oMysqlExpediente = $oMysql->getExpedienteActiveRecord();
@@ -91,7 +85,7 @@ $oExpediente->setCedido($_POST['cedidoExpediente']);
 $oExpediente->setComentario($_POST['comentarioExpediente']);
 /* Grabacion del expediente. */
 if(!$oMysqlExpediente->guardar($oExpediente)){
-    $error ++;
+    $error = 5;
 }
 
 /* Para almacenar en la tabla vialidad. */
@@ -111,7 +105,7 @@ $oVialidad->setConformado($_POST['conformado']);
 $oVialidad->setIdexpediente($oExpediente->getIdexpediente());
 
 if(!$oMysqlVialidad->guardar($oVialidad)){
-    $error ++;
+    $error = 6;
 }
 
 /* Grabacion de los datos del historial del expediente. */
@@ -124,7 +118,7 @@ $oExpHistoria->setDependencia($oDependencia->getIddependencia());
 $oExpHistoria->setFecha(date('Y-m-d'));
 $oExpHistoria->setIdexpediente($oExpediente->getIdexpediente());
 if(!$oMysqlExpHistoria->guardar($oExpHistoria)){
-    $error ++;
+    $error = 7;
 }
 
 if($error == 0){
