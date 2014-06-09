@@ -144,3 +144,33 @@ function guardarDatos(){
             +"&comentario="+comen
             +vialidad);
 }
+
+function actualizarExpediente(expediente){
+    expediente_ = expediente.split(',');
+    if(expediente_.length > 1){
+        for(var i=1;i<=expediente_.length;i++){
+            bb(expediente_[i], i, expediente_.length);
+        }
+    }
+    if(expediente_.length === 1){
+        bb(expediente_[0], 1, 1);
+    }
+}
+
+function bb(expe, i, cien){
+    var divResultado = document.getElementById('divResultado1');
+    ajax=objetoAjax();
+    ajax.open("POST", "busqueda.php" ,true);
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    var progreso = document.getElementById('progreso');
+    if(expe.indexOf('/')!==-1){
+        expediente_aux = expe.split('/');
+    }
+    ajax.onreadystatechange=function() {
+        if (ajax.readyState === 4) {
+            divResultado.innerHTML = ajax.responseText;
+            progreso.style.width = ((i+1)*100/cien)+'%';
+        }
+    };
+    ajax.send("expediente="+expediente_aux[0] + "&ano="+expediente_aux[1]);
+}

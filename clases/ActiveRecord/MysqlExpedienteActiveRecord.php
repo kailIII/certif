@@ -151,6 +151,29 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
             return false;
         }
     }
+
+    /**
+     * El buscarSinfin trae todos los datos que se encuentran en la tabla expediente
+     * y los cuales no han sido finalizados.
+     */
+    public function buscarSinFin() {
+        $sql = "SELECT * FROM expediente WHERE finalizado = 'N';";
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $aExpediente = array();
+            while ($fila = mysql_fetch_object($resultado)){
+                $oExpediente = new ExpedienteValueObject();
+                $oExpediente->setIdexpediente($fila->idexpediente);
+                $oExpediente->setIdCertificacion($fila->idCertificacion);
+                $oExpediente->setExpDnv($fila->expDnv);
+                $aExpediente[] = $oExpediente;
+                unset($oExpediente);
+            }
+            return $aExpediente;
+        } else {
+            return false;
+        }
+    }
     
     /**
      * 

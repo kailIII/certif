@@ -161,7 +161,8 @@ function OcultarCertificado(){
     document.getElementById("muestraExpedientes").style.background = "#1abc9c";
     document.getElementById("muestraCertificado").style.background = "#bdc3c7";
 }
-function busquedaExpediente(){
+
+function acomodaExpediente(){
     var expediente = document.getElementById('dnvExpediente').value;
     
     if(expediente.indexOf('/')!==-1){
@@ -207,6 +208,12 @@ function busquedaExpediente(){
                 expediente[0] = '0000000';
         }
     }
+    
+    document.getElementById('dnvExpediente').value = expediente[0]+'/'+expediente[1];
+}
+
+function busquedaExpediente(){
+    var expediente = document.getElementById('dnvExpediente').value;
 
     var divResultado = document.getElementById('divResultado');
     ajax=objetoAjax();
