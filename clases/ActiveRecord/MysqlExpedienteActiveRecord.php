@@ -119,6 +119,33 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
             return false;
         }
     }
+    
+    /**
+     * 
+     * @param ExpedienteValueObject $oValueObject
+     * @return boolean
+     */
+    public function buscarPorExpDnv($oValueObject) {
+        $sql = "SELECT * FROM expediente WHERE expDnv = " . $oValueObject->getExpDnv();
+        echo $sql ."<br>";
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $fila = mysql_fetch_object($resultado);
+            $oValueObject->setIdexpediente($fila->idexpediente);
+            $oValueObject->setIdCertificacion($fila->idCertificacion);
+            $oValueObject->setCertDpv($fila->certDpv);
+            $oValueObject->setCertDnv($fila->certDnv);
+            $oValueObject->setExpDpv($fila->expDpv);
+            $oValueObject->setMes($fila->mes);
+            $oValueObject->setComentario($fila->comentario);
+            $oValueObject->setImporte($fila->importe);
+            $oValueObject->setVencimiento($fila->vencimiento);
+            $oValueObject->setCedido($fila->cedido);
+            return $oValueObject;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * El buscarTodo debería de traer las ultimas actualizaciones para los

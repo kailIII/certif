@@ -72,6 +72,7 @@ class MysqlVialidadActiveRecord implements ActiveRecord {
                     . $oValueObject->getConformado() . "', "
                     . $oValueObject->getIdexpediente()
                     . ");";
+            echo $sql;
             if(mysql_query($sql)){
                 return TRUE;
             } else {

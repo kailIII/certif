@@ -145,32 +145,23 @@ function guardarDatos(){
             +vialidad);
 }
 
-function actualizarExpediente(expediente){
-    expediente_ = expediente.split(',');
-    if(expediente_.length > 1){
-        for(var i=1;i<=expediente_.length;i++){
-            bb(expediente_[i], i, expediente_.length);
-        }
-    }
-    if(expediente_.length === 1){
-        bb(expediente_[0], 1, 1);
-    }
-}
-
-function bb(expe, i, cien){
+function actualizarExpediente(expediente, i){
     var divResultado = document.getElementById('divResultado1');
-    ajax=objetoAjax();
-    ajax.open("POST", "busqueda.php" ,true);
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    var progreso = document.getElementById('progreso');
-    if(expe.indexOf('/')!==-1){
-        expediente_aux = expe.split('/');
+    var ajax = new Array();
+ 
+    ajax[i] = objetoAjax();
+    ajax[i].open("POST", "busqueda_todos.php" ,true);
+    ajax[i].setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    if(expediente.indexOf('/') !== -1){
+        expediente_aux = expediente.split('/');
     }
-    ajax.onreadystatechange=function() {
-        if (ajax.readyState === 4) {
-            divResultado.innerHTML = ajax.responseText;
-            progreso.style.width = ((i+1)*100/cien)+'%';
+    ajax[i].onreadystatechange=function() {
+        if (ajax[i].readyState === 1) {
+            divResultado.innerHTML = "<img src='../images/todo/preload.GIF'>";
+        }
+        if (ajax[i].readyState === 4) {
+            divResultado.innerHTML = ajax[i].responseText;
         }
     };
-    ajax.send("expediente="+expediente_aux[0] + "&ano="+expediente_aux[1]);
+    ajax[i].send("expediente="+expediente_aux[0] + "&ano="+expediente_aux[1]);  
 }
