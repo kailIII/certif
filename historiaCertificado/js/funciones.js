@@ -161,6 +161,16 @@ function actualizarExpediente(expediente, i){
         }
         if (ajax[i].readyState === 4) {
             divResultado.innerHTML = ajax[i].responseText;
+            
+            progreso = document.getElementById('progreso').value;
+            total = document.getElementById('total').value;
+            progreso++;
+            document.getElementById('progreso').value = progreso;
+            document.getElementById('barra').style.width = (progreso*100/total) + '%';
+            if((progreso*100/total) === 100){
+                document.getElementById('divResultado').style.display = 'none';
+                document.getElementById('divResultado2').style.display = '';
+            }
         }
     };
     ajax[i].send("expediente="+expediente_aux[0] + "&ano="+expediente_aux[1]);  

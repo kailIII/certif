@@ -31,23 +31,32 @@ foreach ($oExpediente as $aExpe) {
             <form class="form-horizontal">
                 <legend>Actualizacion Certificados.</legend>
                 <div class="form-group col-lg-12">
-                    <div class="col-lg-11">
-                        <img src="../images/todo/preload.GIF">
-                        <br/>Actualizando los datos...
-                        <br/>Tiempo aproximado <?php echo count($aExpediente) * 4; ?> segundos
-                        
-                        <div id="divResultado"></div>
-                        <div id="divResultado1" ></div>
+                    <!--<div class="col-lg-11">-->
+                        <div class="progress">
+                            <input type="hidden" id="progreso" name="progreso" value="0" />
+                            <input type="hidden" id="total" name="total" value="<?php echo count($aExpediente); ?>" />
+                            <div class="progress-bar progress-bar-susses" style="width: 0%;" id="barra"></div>
+                        </div>
+                        <div id="divResultado" style="text-align: center;">
+                            <img src="../images/todo/preload.GIF">
+                            <br/>Actualizando los datos...
+                        </div>
+                        <div id="divResultado1" style="display: none;" ></div>
+                        <div id="divResultado2" style="display: none;" >
+                            <div class="form-group has-success">
+                                <div class="col-xs6">
+                                    <a href="../listaCertificado/" class="form-control" >Los Datos Se Actualizaron Correctamente.</a>
+                                    <!--<span class="input-icon fui-check-inverted"></span>-->
+                                </div>
+                            </div>
+                        </div>
                         <?php
                         /* 
                          * tengo los id de los expedientes, ahora tengo que recorrerlos
                          * para poder de esta manera ir actualizando.
                          */
                         ?>
-                    </div>
-<!--                <div class="span3">
-                    <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos()" />
-                </div>-->
+                    <!--</div>-->
                     <br />
                 </div>
             </form>
@@ -70,16 +79,3 @@ foreach ($aExpediente as $aExpe_1) {
     <?php
     $cont ++;
 }
-//$seg = date("s");
-//foreach ($aExpediente as $aExpe_1) {
-//    while (true) {
-//        if(date("s")%4 === 0){
-//            sleep(1);
-//            ?>
-            <!--<br>-->
-            <!--<script>actualizarExpediente('//<?php // echo $aExpe_1; ?>');</script>-->
-            <?php
-//            break;
-//        }
-//    }
-//}

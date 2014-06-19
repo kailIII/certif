@@ -9,113 +9,32 @@ function objetoAjax(){
             xmlhttp = false;
         }
     }
-    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    if (!xmlhttp && typeof XMLHttpRequest !== 'undefined') {
         xmlhttp = new XMLHttpRequest();
     }
     return xmlhttp;
 }
 
 function guardarDatos(){
-//    alert ('Tincho');
-    var archivo = document.getElementById('archivo');
-    archivo = archivo.files[0];
-    
     var identificador = document.getElementById('identificador').value;
     var denominacion = document.getElementById('denominacion').value;
-    var ubicacion  = document.getElementById('ubicacion').value;
     var comitente = document.getElementById('comitente').value;
-    var tipoobra = document.getElementById('tipoobra').value;
-    var observacion = document.getElementById('observacion').value;
-    var longitud = document.getElementById('longitud').value;
-    var terraplen = document.getElementById('terraplen').value;
-    var basenobitu = document.getElementById('basenobitu').value;
-    var banquina = document.getElementById('banquina').value;
-    var tratatriple = document.getElementById('tratatriple').value;
-    var hormigon = document.getElementById('hormigon').value;
-    var recubrimiento = document.getElementById('recubrimiento').value;
-    var reforestacion = document.getElementById('reforestacion').value;
     
-    var fechalic = document.getElementById('fechalic').value;
-    var montoco = document.getElementById('montoco').value;
-    var replanteo = document.getElementById('replanteo').value;
-    var financiada = document.getElementById('financiada').value;
-    var fechato = document.getElementById('fechato').value;
-    var fechacont = document.getElementById('fechacont').value;
-    var montocf = document.getElementById('montocf').value;
-    var plazocf = document.getElementById('plazocf').value;
-    var participacion = document.getElementById('participacion').value;
-    var fechatf = document.getElementById('fechatf').value;
-    var personeria = document.getElementById('personeria').value;
-    var ute = document.getElementById('ute').value;
-    var fechainicio = document.getElementById('fechainicio').value;
-    var comentarios = document.getElementById('comentarios').value;
+    var divResultado = document.getElementById('resultado');
     
-    divResultado = document.getElementById('resultado');
-    
-    fechalic = fechaInvertir(fechalic);
-    replanteo = fechaInvertir(replanteo);
-    fechato = fechaInvertir(fechato);
-    fechacont = fechaInvertir(fechacont);
-    plazocf = fechaInvertir(plazocf);
-    fechatf = fechaInvertir(fechatf);
-    fechainicio = fechaInvertir(fechainicio);
-    
-    var limit = 1048576*2,xhr;
-    console.log(limit);
-    if( archivo ){
-        if( archivo.size < limit ){
-            xhr = new XMLHttpRequest();
-            xhr.upload.addEventListener('load',function(e){
-                ajax=objetoAjax();
-                //usando del medoto POST
-                //archivo que realizará la operacion
-                ajax.open("POST", "guardarObra.php" ,true);
-                ajax.onreadystatechange=function() {
-                    if (ajax.readyState==1) {
-                        divResultado.innerHTML= '<center><img src="../images/cargando.gif"><br/>Guardando los datos...</center>';
-                    } else if (ajax.readyState==4) {
-                        //mostrar los nuevos registros en esta capa
-                        divResultado.innerHTML = ajax.responseText;
-                        document.getElementById('idOdontologia').value = document.getElementById('idOdontologiaAuxiliar').value;
-                    }
-                }
-                //muy importante este encabezado ya que hacemos uso de un formulario
-                ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-                //enviando los valores
-                ajax.send("identificador="+identificador+"&denominacion="+denominacion
-                        +"&ubicacion="+ubicacion+"&comitente="+comitente+"&tipoobra="+tipoobra
-                        +"&observacion="+observacion+"&longitud="+longitud+"&terraplen="+terraplen
-                        +"&basenobitu="+basenobitu+"&banquina="+banquina
-                        +"&tratatriple="+tratatriple+"&hormigon="+hormigon
-                        +"&recubrimiento="+recubrimiento+"&reforestacion="+reforestacion
-                        +"&fechalic="+fechalic+"&montoco="+montoco
-                        +"&replanteo="+replanteo
-                        +"&financiada="+financiada
-                        +"&fechato="+fechato
-                        +"&fechacont="+fechacont
-                        +"&fechainicio="+fechainicio
-                        +"&montocf="+montocf
-                        +"&plazocf="+plazocf
-                        +"&participacion="+participacion
-                        +"&fechatf="+fechatf
-                        +"&personeria="+personeria
-                        +"&comentarios="+comentarios
-                        +"&ute="+ute
-                        +"&kml="+archivo.name);
-                }, false);
-            xhr.upload.addEventListener('error',function(e){
-                divResultado.innerHTML = "<h1>Ocurrio Un Error</h1>";
-            }, false);
-            xhr.open('POST','subirArchivo.php');
-            xhr.setRequestHeader("Cache-Control", "no-cache");
-            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            xhr.setRequestHeader("X-File-Name", archivo.name);
-            xhr.send(archivo);
-        } else {
-            alert('El archivo es mayor que 2MB!');
+    ajax=objetoAjax();
+    ajax.open("POST", "guardarObra.php" ,true);
+    ajax.onreadystatechange=function() {
+        if (ajax.readyState === 1) {
+            divResultado.innerHTML= '<img src="../images/cargando.gif"><br/>Guardando los datos...';
+        } else if (ajax.readyState === 4) {
+            divResultado.innerHTML = ajax.responseText;
         }
-    }
-    return true;
+    };
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+    ajax.send("identificador="+identificador+"&denominacion="+denominacion
+        +"&comitente="+comitente);
 }
 
 function soloFecha(evt){
@@ -125,7 +44,7 @@ function soloFecha(evt){
     }else{ // otro navegador
     keynum = evt.which;
     }
-    if((keynum>47 && keynum<58)||(keynum==0)||(keynum==13)||(keynum==8)||(keynum==47)){
+    if((keynum>47 && keynum<58)||(keynum===0)||(keynum===13)||(keynum===8)||(keynum===47)){
         return true;
     } else {
         return false;

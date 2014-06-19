@@ -58,7 +58,7 @@ class MysqlComitenteActiveRecord implements ActiveRecord{
      * @return \ComitenteValueObject|boolean
      */
     public function buscarTodo() {
-        $sql = "SELECT * FROM comitente ";
+        $sql = "SELECT * FROM comitente; ";
 //        $sql .= "WHERE id = " . $oValueObject->getId();
         $resultado = mysql_query($sql);
         if($resultado){

@@ -272,7 +272,6 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
         $sql .= ", " . $oValueObject->getParticipacion();
         $sql .= ", '" . $oValueObject->getImagen() . "'";
         $sql .= ", '" . $oValueObject->getFechaFirma() . "');";
-        echo "<br>".$sql . "<br>";
         $resultado = mysql_query($sql) or die(mysql_error());
         if($resultado){
             $sql = "SELECT id FROM certificacion WHERE idObra = '"

@@ -225,6 +225,21 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
 
     /**
      * 
+     * @return int
+     */
+    public function buscarUltimo() {
+        $sql = "SELECT MAX(id)+1 FROM obrasejecutadas;";
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $resultado = mysql_fetch_row($resultado);
+            return $resultado[0];
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * 
      * @param ObrasEjecutadasValueObject $oValueObject
      * @return int
      */
@@ -271,6 +286,26 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
             return FALSE;
         }
     }
+    
+    /**
+     * Almacena el nombre de la obra, el identificador y el comitente de la misma.
+     * @param ObrasEjecutadasValueObject $oValueObject
+     * @return boolean
+     */
+    public function guardarNombre($oValueObject) {
+        $sql = "INSERT INTO obrasejecutadas (id, denominacion, idcomitente) VALUES(" 
+                . $oValueObject->getID() . ", '"
+                . utf8_decode($oValueObject->getDenominacion()) ."', "
+                . $oValueObject->getIdcomitente() .");";
+        $resultado = mysql_query($sql);
+//        or die(mysql_error());
+        if($resultado){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
     /**
      * 
      * @param ObrasEjecutadasValueObject $oValueObject
@@ -344,4 +379,3 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
         }
     }
 }
-?>

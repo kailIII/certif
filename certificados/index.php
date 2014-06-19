@@ -26,7 +26,7 @@ include_once '../inicio/valido.php';
                             $oObra = new ObrasEjecutadasValueObject();
                             $oObra = $oMysqlObra->buscarTodo();
                             ?>
-                            <select name="nombreobra" id="nombreobra" class="select-block" value="Comun">
+                            <select name="nombreobra" id="nombreobra" class="select-block" >
                                 <?php
                                 foreach ($oObra as $aObra) {
                                 echo "<option value='" . $aObra->getID() . "'>"
@@ -77,12 +77,12 @@ include_once '../inicio/valido.php';
                                 </div>
                             </div>
 
-                            <div class="col-lg-11">
+<!--                            <div class="col-lg-11">
                                 <div class="col-lg-11">
                                 <label>Comentario sobre el certificado</label>
                                 <input class="form-control" name="cometarioscert" id="cometarioscert" title="Comentario sobre el certificado" alt="Comentario sobre el certificado" placeholder="Comentario sobre el certificado"><br/>
                                 </div>
-                            </div>
+                            </div>-->
                             
                             <div class="col-lg-11">
                                 <div class="col-lg-4">

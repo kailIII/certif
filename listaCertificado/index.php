@@ -57,6 +57,28 @@ $oMysql->conectar();
         }
         ?>
         <div class="container">
+            <div style="float: right;">
+                <a href="../historiaCertificado/actualizacion.php" class="btn btn-large btn-block btn-primary">&nbsp;&nbsp;&nbsp;Actualizar&nbsp;&nbsp;&nbsp;</a>
+            </div>
+            <div class="form-group">
+                    <label class="control-label"> Comitente </label><br />
+                    <?php
+                    $oMysqlComitente = $oMysql->getComitenteActiveRecord();
+                    $oComitente = new ComitenteValueObject();
+                    $oComitente = $oMysqlComitente->buscarTodo();
+                    ?>
+                    <div class="col-lg-4">
+                    <select name="comitente" id="comitente" class="select-block">
+                    <?php
+                    foreach ($oComitente as $aComitente) {
+                        ?>
+                        <option value="<?php echo $aComitente->getId(); ?>" ><?php echo utf8_encode($aComitente->getDescripcion()); ?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                    </div>
+                </div>
             <legend>Certificados</legend>
             <div class="form-group col-lg-12">
                 <?php
