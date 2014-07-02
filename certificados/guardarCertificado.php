@@ -44,7 +44,8 @@ if(isset($_POST['nrocert'])){
     $oCertificado->setIdTipo($_POST['tipocertf']);
     $oCertificado->setMes($_POST['periodo']);
     $oCertificado->setImporteBasico($_POST['importeb']);
-    $oCertificado->setComentario($_POST['comentarios']);
+//    $oCertificado->setComentario($_POST['comentarios']);
+    $oCertificado->setComentario($_POST['comentarioExpediente']);
     $oCertificado->setFechaFirma($_POST['fechafirma']);
     /* Valores neutros. */
     $oCertificado->setPeriodo('0000-00-00 00:00:00');
@@ -91,6 +92,7 @@ $oExpediente->setCertDpv($_POST['dnvCertificado']);
 $oExpediente->setCertDnv($_POST['dnvCertificado']);
 $oExpediente->setExpDpv($_POST['dpvExpediente']);
 $oExpediente->setExpDnv($_POST['dnvExpediente']);
+$oExpediente->setMes($_POST['periodo']);
 //$oExpediente->setMes($_POST['mesExpediente']);
 //$oExpediente->setDependencia($oDependencia->getIddependencia());
 //$oExpediente->setDependencia($_POST['dependenciaExpediente']);

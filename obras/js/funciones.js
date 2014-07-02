@@ -19,6 +19,7 @@ function guardarDatos(){
     var identificador = document.getElementById('identificador').value;
     var denominacion = document.getElementById('denominacion').value;
     var comitente = document.getElementById('comitente').value;
+    var expediente = document.getElementById('expediente').value;
     
     var divResultado = document.getElementById('resultado');
     
@@ -34,7 +35,7 @@ function guardarDatos(){
     ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
     ajax.send("identificador="+identificador+"&denominacion="+denominacion
-        +"&comitente="+comitente);
+        +"&comitente="+comitente+"&expediente="+expediente);
 }
 
 function soloFecha(evt){

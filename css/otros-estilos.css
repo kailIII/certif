@@ -341,3 +341,11 @@ http://ryanfait.com/
 #ajax_listOfOptionsSmall .optionDivSelected{/* Selected item in the list */background-color: #5789D5; color: #FFF;}
 
 #ajax_listOfOptionsSmall_iframe{background-color: #F00; position: absolute; z-index: 5;}
+
+.bajocero{
+    margin-bottom: 0px;
+}
+
+.bajocinco{
+    margin-bottom: 5px;
+}

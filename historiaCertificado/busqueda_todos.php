@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 include_once('../certificados/simple_html_dom.php');
+include_once('../inicio/valido.php');
 
 $request = array(
     'http' => array(
@@ -61,4 +62,39 @@ if(trim(substr($expediente, $extracto+10, $estado-$extracto-10)) === "ECCION NAC
     var_dump($oExpediente);
     $oVialidad->setIdexpediente($oExpediente->getIdexpediente());
     $oMysqlVialidad->guardar($oVialidad);
+    
+    /* Busco el identificador de la dependencia. */
+    $oMysqlDependencia = $oMysql->getDependenciaActiveRecord();
+    $oDependencia = new DependenciaValueObject();
+    $oDependencia->setDependencia($oVialidad->getDependenciaa());
+    //$oDependencia = $oMysqlDependencia->buscarDependencia($oDependencia);
+
+    if(!$oMysqlDependencia->buscarDependencia($oDependencia)){
+        if(!$oMysqlDependencia->guardar($oDependencia)){
+            $error = 1;
+        } else {
+            if(!$oMysqlDependencia->buscarDependencia($oDependencia)){
+                $error = 1;
+            }
+        }
+    }
+
+    /* Almaceno los datos en la tabla de exphistoria. */
+    $oMysqlExpHistoria = $oMysql->getExpHistotiaActiveRecord();
+    $oExpHistoria = new ExpHistoriaValueObject();
+    $oExpHistoria->setIdexpediente($oExpediente->getIdexpediente());
+    $oExpHistoria->setFecha(date('Y-m-d'));
+    $oExpHistoria->setDependencia($oDependencia->getIddependencia());
+    $oExpHistoria->setComentario('Actualización automática');
+    
+    if(!$oMysqlExpHistoria->guardar($oExpHistoria)) {
+        $error = 2;
+    }
+    
+    $oMysqlActualizaciones = $oMysql->getActualizacionesActiveRecord();
+    $oActualizacones = new ActualizacionesValueObject($_SESSION['usuario']);
+    $oMysqlActualizaciones->guardar($oActualizacones);
+    echo $_SESSION['usuario'];
+    
+    /* Finalizacion de almacenamiento del historico. */
 }

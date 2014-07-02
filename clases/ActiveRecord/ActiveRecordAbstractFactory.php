@@ -28,6 +28,7 @@ abstract class ActiveRecordAbstractFactory {
     public abstract function getExpedienteActiveRecord();
     public abstract function getExpHistotiaActiveRecord();
     public abstract function getDependenciaActiveRecord();
+    public abstract function getActualizacionesActiveRecord();
     
 
     /**

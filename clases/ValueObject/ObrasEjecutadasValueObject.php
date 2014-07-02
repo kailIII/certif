@@ -16,7 +16,7 @@ class ObrasEjecutadasValueObject {
     private $tratamientoTripleMedida, $Hormigones, $HormigonesMedida, $reforestacion;
     private $reforestacionMedida, $certEjecucion, $rp, $rd, $ok, $fechaInicio;
     private $fechaLicitacion, $fechaContrato, $fechaReplanteo, $financiada;
-    private $comentario, $fechaRP, $fechaRD, $kml;
+    private $comentario, $fechaRP, $fechaRD, $kml, $expPrincipal;
     
     public function getID() {
         return $this->ID;
@@ -377,5 +377,12 @@ class ObrasEjecutadasValueObject {
     public function setKml($kml) {
         $this->kml = $kml;
     }
+    
+    public function getExpPrincipal() {
+        return $this->expPrincipal;
+    }
+
+    public function setExpPrincipal($expPrincipal) {
+        $this->expPrincipal = $expPrincipal;
+    }
 }
-?>

@@ -8,6 +8,7 @@ $oMysql->conectar();
 $identificador = $_POST['identificador'];
 $denominacion=$_POST['denominacion'];
 $comitente=$_POST['comitente'];
+$expediente=$_POST['expediente'];
 
 //include_once '../clases/ValueObject/ObrasEjecutadasValueObject.php';
 //include_once '../clases/ActiveRecord/MysqlObrasEjecutadasActiveRecord.php';
@@ -16,6 +17,7 @@ $oObras = new ObrasEjecutadasValueObject();
 $oObras->setID($identificador);
 $oObras->setDenominacion($denominacion);
 $oObras->setIdcomitente($comitente);
+$oObras->setExpPrincipal($expediente);
 
 if($oMysqlObras->guardarNombre($oObras)){
     ?>

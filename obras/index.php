@@ -31,6 +31,10 @@ $oMysql->conectar();
                 <div class="form-group">
                     <label class="control-label"> Denominaci&oacute;n </label><br />
                     <textarea class="col-lg-10 form-control" rows="2" maxlength="250" name="denominacion" id="denominacion" ></textarea>
+                    <br>
+                    
+                    <label class="control-label">Expediente</label><br>
+                    <input class="form-control small" name="expediente" id="expediente" value="" />
                 </div>
                 <div class="form-group">
                     <label class="control-label"> Comitente </label><br />
