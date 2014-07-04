@@ -41,6 +41,17 @@
                                 </ul> <!-- /Sub menu Certificados -->
                             </li>
                             <li>
+                              <a href="../admDependencia">
+                                Dependencia
+                              </a>
+<!--                                <ul>
+                                  <li><a href="../certificados/index.php">Altas</a></li>
+                                  <li><a href="../listaCertificado">Listado</a></li>
+                                  <li><a href="#fakelink">Modificaciones</a></li>
+                                  <li><a href="#fakelink">Bajas</a></li>
+                                </ul>  /Sub menu Certificados -->
+                            </li>
+                            <li>
                               <a href="#fakelink">
                                 Usuarios
                               </a>

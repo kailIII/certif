@@ -12,9 +12,17 @@
  * @author Martin
  */
 class DependenciaValueObject {
-    private $iddependencia, $dependencia, $dias;
+    private $iddependencia, $dependencia, $dias, $orden;
     
-    public function getIddependencia() {
+    public function getOrden() {
+        return $this->orden;
+    }
+
+    public function setOrden($orden) {
+        $this->orden = $orden;
+    }
+
+        public function getIddependencia() {
         return $this->iddependencia;
     }
 

@@ -79,6 +79,21 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
             return false;
         }
     }
+    
+   /**
+    * 
+    * @return boolean
+    */
+    public function buscarOrden() {
+        $sql = 'SELECT MAX(orden)+1 as orden FROM dependencia;';
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $resultado = mysql_fetch_row($resultado);
+            return $resultado[0];
+        } else {
+            return 0;
+        }
+    }
 
     public function contar() {
         

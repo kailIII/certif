@@ -298,6 +298,26 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
 
     /**
      * 
+     * @param ObrasEjecutadasValueObject $oValueObject
+     * @return int
+     */
+    public function comprueba($oValueObject) {
+        $sql = "SELECT COUNT(*) 
+            FROM obrasejecutadas o 
+            INNER JOIN certificacion c ON c.idObra = o.id 
+            INNER JOIN expediente e ON e.idCertificacion  = c.id AND e.finalizado = 'N'
+            WHERE o.id = " . $oValueObject->getID();
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $resultado = mysql_fetch_row($resultado);
+            return $resultado[0];
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * 
      * @return int
      */
     public function buscarUltimo() {

@@ -17,10 +17,17 @@ function objetoAjax(){
 
 function cambio(){
     var comitente = document.getElementById('comitente').value;
+//    if(comitente === '0') {
+//        document.location.href = 'index.php';
+//    }
     var divResultado = document.getElementById('listado');
     
     ajax=objetoAjax();
-    ajax.open("POST", "procesoBusqueda.php" ,true);
+    if(comitente === '0') {
+        ajax.open("POST", "todo.php" ,true);
+    } else {
+        ajax.open("POST", "procesoBusqueda.php" ,true);
+    }
     ajax.onreadystatechange=function() {
         if (ajax.readyState === 1) {
 //            divResultado.innerHTML= '<center><img src="../imag1es/cargando.gif"><br/>Guardando los datos...</center>';
