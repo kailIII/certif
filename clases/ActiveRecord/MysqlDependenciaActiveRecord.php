@@ -71,6 +71,7 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
                 $oValueObject->setIddependencia($fila->iddependencia);
                 $oValueObject->setDias($fila->dias);
                 $oValueObject->setDependencia($fila->dependencia);
+                $oValueObject->setOrden($fila->orden);
                 $aDependencia[] = $oValueObject;
                 unset($oValueObject);
             }
@@ -115,19 +116,27 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
          */
         
         /* Primero compruebo que el dato no exista en la base. */
-        $sql ="SELECT iddependencia, dependencia, dias FROM dependencia "
+        $sql ="SELECT iddependencia, dependencia, dias, orden FROM dependencia "
                 . " WHERE dependencia = '" . $oValueObject->getDependencia() ."';";
         $resultado = mysql_query($sql);
         $resultado = mysql_fetch_object($resultado);
         if($resultado){
             $oValueObject->setIddependencia($resultado->iddependencia);
             $oValueObject->setDias($resultado->dias);
+            $oValueObject->setOrden($resultado->orden);
             return TRUE;
         } else {
-            $sql = "INSERT INTO dependencia (dependencia, dias) VALUES ("
-                . "'" . $oValueObject->getDependencia() . "', "
-                . "7);";
-//                . $oValueObject->getDias() .")";
+            if($oValueObject->getOrden()!=''){
+                   $sql = "INSERT INTO dependencia (dependencia, dias, orden) VALUES ("
+                    . "'" . $oValueObject->getDependencia() . "', "
+                    . $oValueObject->getDias() . ", "
+                    . $oValueObject->getOrden() .");";
+            } else {
+                $sql = "INSERT INTO dependencia (dependencia, dias) VALUES ("
+                    . "'" . $oValueObject->getDependencia() . "', "
+                    . "7);";
+    //                . $oValueObject->getDias() .")";
+            }
             if(mysql_query($sql)){
                 $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");
                 $id = mysql_fetch_array($result);
