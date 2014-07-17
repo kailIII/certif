@@ -25,7 +25,7 @@ function guardarDatos(){
     var periodo = document.getElementById('periodo').value;
     var fechafirma = document.getElementById('fechafirma').value;
     
-    var importeb = document.getElementById('importeb').value;
+//    var importeb = document.getElementById('importeb').value;
     var dnvCertificado = document.getElementById("dnvCertificado").value;
 
     var dpvExpediente = document.getElementById("dpvExpediente").value;
@@ -64,7 +64,7 @@ function guardarDatos(){
             +"&nrocert="+nrocert
             +"&periodo="+periodo
             +"&fechafirma="+fechafirma
-            +"&importeb="+importeb
+//            +"&importeb="+importeb
             +"&dnvCertificado="+dnvCertificado
             +"&dpvExpediente="+dpvExpediente
             +"&dnvExpediente="+dnvExpediente

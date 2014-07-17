@@ -315,7 +315,8 @@ class MysqlExpedienteActiveRecord implements ActiveRecord {
         $sql.= ", '" . $oValueObject->getVencimiento() . "'";
         $sql.= ", '" . $oValueObject->getCedido() . "'";
         $sql.=");";
-        $resultado = mysql_query($sql) or die(mysql_error());
+//        $resultado = mysql_query($sql) or die(mysql_error());
+        $resultado = mysql_query($sql) or die(false);
         if($resultado){
             $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");
             $id = mysql_fetch_array($result);

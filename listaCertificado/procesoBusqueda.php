@@ -30,11 +30,11 @@ $oObra = $oMysqlObras->buscarComitente($oObra);
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <td colspan="10" class="success">
-                    <?php echo utf8_encode($aObra->getID() . ' ' . $aObra->getDenominacion() . ' ' . $aObra->getExpPrincipal()); ?>
+                    <?php echo utf8_encode($aObra->getID() . ' ' . $aObra->getDenominacion() . ' -- ' . $aObra->getExpPrincipal()); ?>
                 </td>
             </tr>
             <tr>
-                <th>Cert. DPV</th>
+                <th>Cert</th>
                 <th>Cert. DNV</th>
                 <th>Expediente DNV</th>
                 <th>Expediente DPV</th>

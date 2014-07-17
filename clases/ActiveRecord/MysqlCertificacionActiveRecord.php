@@ -261,7 +261,8 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
         $sql .= ", " . $oValueObject->getIdTipo();
         $sql .= ", '" . $oValueObject->getMes() . "'";
         $sql .= ", '" . $oValueObject->getPeriodo() . "'";
-        $sql .= ", " . $oValueObject->getImporteBasico();
+        $sql .= ", 0";
+//        $sql .= ", " . $oValueObject->getImporteBasico();
         $sql .= ", " . $oValueObject->getImporteRedeterminado();
         $sql .= ", " . $oValueObject->getFondoReparo();
         $sql .= ", " . $oValueObject->getAnticipoFinanciero();
@@ -272,11 +273,13 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
         $sql .= ", " . $oValueObject->getParticipacion();
         $sql .= ", '" . $oValueObject->getImagen() . "'";
         $sql .= ", '" . $oValueObject->getFechaFirma() . "');";
-        $resultado = mysql_query($sql) or die(mysql_error());
+//        $resultado = mysql_query($sql) or die(mysql_error());
+        $resultado = mysql_query($sql) or die(false);
         if($resultado){
             $sql = "SELECT id FROM certificacion WHERE idObra = '"
                     . $oValueObject->getIdObra() . "';";
-            $resultado = mysql_query($sql) or die(mysql_error());
+//            $resultado = mysql_query($sql) or die(mysql_error());
+            $resultado = mysql_query($sql) or die(false);
             if($resultado){
                 $fila = mysql_fetch_object($resultado);
                 $oValueObject->setId($fila->id);

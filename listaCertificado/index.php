@@ -57,29 +57,27 @@ $oMysql->conectar();
 //        $totalfinal = 0;
         ?>
         <div class="container">
-            <div style="float: right;">
-                <a href="../historiaCertificado/actualizacion.php" class="btn btn-large btn-block btn-primary">&nbsp;&nbsp;&nbsp;Actualizar&nbsp;&nbsp;&nbsp;</a>
+            <div class="form-group">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <a href="../historiaCertificado/actualizacion.php" class="btn btn-large btn-block btn-primary">Actualizar</a>
+                </div>
             </div>
             <div class="form-group">
-                    <label class="control-label"> Comitente </label><br />
-                    <?php
-                    $oMysqlComitente = $oMysql->getComitenteActiveRecord();
-                    $oComitente = new ComitenteValueObject();
-                    $oComitente = $oMysqlComitente->buscarTodo();
+                <label class="control-label"> Comitente </label><br />
+                <?php
+                $oMysqlComitente = $oMysql->getComitenteActiveRecord();
+                $oComitente = new ComitenteValueObject();
+                $oComitente = $oMysqlComitente->buscarTodo();
+                foreach ($oComitente as $aComitente) {
                     ?>
                     <div class="col-lg-4">
-                        <select name="comitente" id="comitente" class="select-block" onchange="cambio();">
-                            <option value="0" >Todos</option>
-                    <?php
-                    foreach ($oComitente as $aComitente) {
-                        ?>
-                        <option value="<?php echo $aComitente->getId(); ?>" ><?php echo utf8_encode($aComitente->getDescripcion()); ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
+                        <input type="checkbox" class="checkbox checkbox-inline" name="comitente" id="comitente<?php echo $aComitente->getId(); ?>" value="<?php echo $aComitente->getId(); ?>" onchange="cambio()"> &nbsp; <?php echo utf8_encode($aComitente->getDescripcion()); ?>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
+            </div>
             <legend>Certificados</legend>
             <div id="listado">
                 <?php include './todo.php';?>

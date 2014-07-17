@@ -43,7 +43,7 @@ if(isset($_POST['nrocert'])){
     $oCertificado->setCertNro($_POST['nrocert']);
     $oCertificado->setIdTipo($_POST['tipocertf']);
     $oCertificado->setMes($_POST['periodo']);
-    $oCertificado->setImporteBasico($_POST['importeb']);
+//    $oCertificado->setImporteBasico($_POST['importeb']);
 //    $oCertificado->setComentario($_POST['comentarios']);
     $oCertificado->setComentario($_POST['comentarioExpediente']);
     $oCertificado->setFechaFirma($_POST['fechafirma']);

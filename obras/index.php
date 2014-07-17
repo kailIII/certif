@@ -25,43 +25,53 @@ $oMysql->conectar();
             <form class="form-horizontal">
                 <legend>Obras en Ejecuci&oacute;n y Ejecutadas</legend>
                 <div class="form-group">
-                    <label class="control-label">Identificaci&oacute;n</label><br />
-                    <input class="form-control short small" name="identificador" id="identificador" size="10" onKeypress="return soloNumeros(event);" value="<?php echo $oMysqlObra->buscarUltimo();?>" disabled />
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> Denominaci&oacute;n </label><br />
-                    <textarea class="col-lg-10 form-control" rows="2" maxlength="250" name="denominacion" id="denominacion" ></textarea>
-                    <br>
-                    
-                    <label class="control-label">Expediente</label><br>
-                    <input class="form-control small" name="expediente" id="expediente" value="" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> Comitente </label><br />
-                    <?php
-                    $oMysqlComitente = $oMysql->getComitenteActiveRecord();
-                    $oComitente = new ComitenteValueObject();
-                    $oComitente = $oMysqlComitente->buscarTodo();
-                    ?>
-                    <div class="col-lg-4">
-                    <select name="comitente" id="comitente" class="select-block">
-                    <?php
-                    foreach ($oComitente as $aComitente) {
-                        ?>
-                        <option value="<?php echo $aComitente->getId(); ?>" ><?php echo utf8_encode($aComitente->getDescripcion()); ?></option>
-                        <?php
-                    }
-                    ?>
-                    </select>
+                    <div class="col-lg-2">
+                        <label class="label-success label">Identificaci&oacute;n</label>
+                        <input class="form-control small" name="identificador" id="identificador" size="10" onKeypress="return soloNumeros(event);" value="<?php echo $oMysqlObra->buscarUltimo();?>" disabled />
                     </div>
                 </div>
-                <div class="span3">
-                    <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos();" />
-                    <!--<input name="guardar" type="submit" value="Guardar" class="btn btn-large btn-block btn-primary">-->
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <label class="label-success label"> Denominaci&oacute;n </label>
+                        <!--<textarea class="form-control input-group" rows="2" maxlength="250" name="denominacion" id="denominacion" ></textarea>-->
+                        <input class="form-control small" name="denominacion" id="denominacion" value="" />
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="label-success label">Expediente</label>
+                        <input class="form-control small" name="expediente" id="expediente" value="" />
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3">
+                        <label class="label-success label">Fecha Obra</label>
+                        <input class="form-control small" name="fecha" id="fecha" value="<?php echo date('Y-m-d'); ?>" type="date" />
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">
+                        <label class="label-success label"> Comitente </label><br />
+                        <?php
+                        $oMysqlComitente = $oMysql->getComitenteActiveRecord();
+                        $oComitente = new ComitenteValueObject();
+                        $oComitente = $oMysqlComitente->buscarTodo();
+                        ?>
+                        <select name="comitente" id="comitente" class="select-block">
+                        <?php
+                        foreach ($oComitente as $aComitente) {
+                            ?>
+                            <option value="<?php echo $aComitente->getId(); ?>" ><?php echo utf8_encode($aComitente->getDescripcion()); ?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-3">
+                        <input type="button" value="&nbsp;&nbsp;&nbsp;Guardar&nbsp;&nbsp;&nbsp;" class="btn btn-large btn-block btn-primary" onclick="guardarDatos();" />
+                    </div>
+                    <div class="col-lg-9" id="resultado"></div>
                 </div>
             </form>
             <div id="mensaje" style="color:brown; "></div>
-            <div id="resultado"></div>
             <div id="div_listar"></div>
             <div id="div_oculto" ></div>
         </div>

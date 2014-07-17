@@ -58,10 +58,10 @@ $totalfinal = 0;
         ?>
         <table class="table table-striped table-bordered table-hover">
             <tr>
-                <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion()); ?></td>
+                <td colspan="10" class="success"><?php echo utf8_encode($oObra->getDenominacion().' -- '.$oObra->getExpPrincipal()); ?></td>
             </tr>
             <tr>
-                <th>Cert. DPV</th>
+                <th>Cert.</th>
                 <th>Cert. DNV</th>
                 <th>Expediente DNV</th>
                 <th>Expediente DPV</th>
@@ -71,6 +71,7 @@ $totalfinal = 0;
                 <th>Importe</th>
                 <th>Vto.</th>
                 <th>Restante&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th></th>
                 <!--<th>Cedido</th>-->
             </tr>
             <?php
@@ -130,6 +131,13 @@ $totalfinal = 0;
                             <div class="progress bajocinco"><div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"></div></div>
                             <div class="progress bajocero"><div class="progress-bar <?php echo $progresoD; ?>" style="width: <?php echo ($orden_*100)/$ordenTotal; ?>%;"></div></div>
                         </td>
+                        <td>
+                            <?php
+                            if($expediente->getCedido() == ''){
+                                echo "*" . $expediente->getCedido() . "*";
+                            }
+                            ?>
+                        </td>
                         <!--<td><?php // echo $expediente->getCedido(); ?></td>-->
                     </tr>
                     <?php
@@ -145,7 +153,7 @@ $totalfinal = 0;
                     $totalfinal += $total;
                     ?>
                 </td>
-                <td colspan="2"></td>
+                <td colspan="3"></td>
             </tr>
         </table>
         <?php
@@ -165,27 +173,3 @@ $totalfinal = 0;
         </table>
     </div>
 </div>
-<?php
-//[1]=> array(2) { [0]=> string(39) "SUB GERENCIA DE CONTABILIDAD Y FINANZAS" [1]=> NULL } 
-//[2]=> array(2) { [0]=> string(18) "DIVISION CONTRALOR" [1]=> NULL } 
-//[3]=> array(2) { [0]=> string(29) "DIVISION TESORERIA Y FINANZAS" [1]=> NULL } 
-//[10]=> array(2) { [0]=> string(20) "DIVISION PRESUPUESTO" [1]=> NULL }
-//[11]=> array(2) { [0]=> string(22) "CONSOLIDACION DE DEUDA" [1]=> NULL } 
-//[9999]=> array(2) { [0]=> string(11) "DESCONOCIDO" [1]=> NULL }
-//[10008]=> array(2) { [0]=> string(45) "1? DISTRITO - BUENOS AIRES - MESA DE ENTRADAS" [1]=> NULL } 
-//[10009]=> array(2) { [0]=> string(40) "13? DISTRITO - CHUBUT - MESA DE ENTRADAS" [1]=> NULL } 
-//[10010]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10011]=> array(2) { [0]=> string(43) "11? DISTRITO - CATAMARCA - MESA DE ENTRADAS" [1]=> NULL } 
-//[10013]=> array(2) { [0]=> string(0) "" [1]=> NULL }
-//[10015]=> array(2) { [0]=> string(31) "ARCHIVO GENERAL DE CONTABILIDAD" [1]=> NULL } 
-//[10016]=> array(2) { [0]=> string(33) "COORDINACION GENERAL DE DISTRITOS" [1]=> NULL } 
-//[10017]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10018]=> array(2) { [0]=> string(17) "DIVISION DESPACHO" [1]=> NULL } 
-//[10019]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10020]=> array(2) { [0]=> string(33) "DIVISION MESA GENERAL DE ENTRADAS" [1]=> NULL } 
-//[10021]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10022]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10023]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10024]=> array(2) { [0]=> string(45) "19?-DISTRITO - BAHIA BLANCA - MESA DE ENTRADA" [1]=> NULL } 
-//[10025]=> array(2) { [0]=> string(6) "Prueba" [1]=> NULL } 
-//[10026]=> array(2) { [0]=> string(7) "Prueba2" [1]=> NULL } }

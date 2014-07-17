@@ -153,6 +153,75 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
      */
     public function buscarComitente($oValueObject) {
         $sql = "SELECT * FROM obrasejecutadas";
+        $sql .= " WHERE idcomitente IN (".$oValueObject->getIdcomitente().");";
+
+        $resultado = mysql_query($sql);
+        if($resultado){
+            $aObras = array();
+            while ($fila = mysql_fetch_object($resultado)){
+                $oValueObject = new ObrasEjecutadasValueObject();
+                $oValueObject->setBanquinaRipio($fila->banquinaRipio);
+                $oValueObject->setBanquinaRipioMedida($fila->banquinaRipioMedida);
+                $oValueObject->setBaseMedida($fila->baseMedida);
+                $oValueObject->setBaseNoButuminosa($fila->baseNoButuminosa);
+                $oValueObject->setCertEjecucion($fila->certEjecucion);
+                $oValueObject->setComentario($fila->comentario);
+                $oValueObject->setDenominacion($fila->denominacion);
+                $oValueObject->setEnejec($fila->enejec);
+                $oValueObject->setFechaContrato($fila->fechaContrato);
+                $oValueObject->setFechaInicio($fila->fechaInicio);
+                $oValueObject->setFechaLicitacion($fila->fechaLicitacion);
+                $oValueObject->setFechaRD($fila->fechaRD);
+                $oValueObject->setFechaRP($fila->fechaRP);
+                $oValueObject->setFechaReplanteo($fila->fechaReplanteo);
+                $oValueObject->setFechaTerminacionFinal($fila->FechaTerminacionFinal);
+                $oValueObject->setFechaTerminacionOriginal($fila->fechaTerminacionOriginal);
+                $oValueObject->setFinanciada($fila->financiada);
+                $oValueObject->setHormigones($fila->Hormigones);
+                $oValueObject->setHormigonesMedida($fila->HormigonesMedida);
+                $oValueObject->setID($fila->ID);
+                $oValueObject->setIdPersoneria($fila->idPersoneria);
+                $oValueObject->setIdcomitente($fila->idcomitente);
+                $oValueObject->setLongitud($fila->longitud);
+                $oValueObject->setLongitudMedida($fila->longitudMedida);
+                $oValueObject->setMontoContractualFinal($fila->montoContractualFinal);
+                $oValueObject->setMontoContractualOriginal($fila->montoContractualOriginal);
+                $oValueObject->setObservacion($fila->observacion);
+                $oValueObject->setOk($fila->ok);
+                $oValueObject->setParticipacion($fila->participacion);
+                $oValueObject->setPlazoFinal($fila->PlazoFinal);
+                $oValueObject->setPlazoOriginal($fila->PlazoOriginal);
+                $oValueObject->setRd($fila->rd);
+                $oValueObject->setRecubrimiento($fila->recubrimiento);
+                $oValueObject->setRecubrimientoMedida($fila->recubrimientoMedida);
+                $oValueObject->setReforestacion($fila->reforestacion);
+                $oValueObject->setReforestacionMedida($fila->reforestacionMedida);
+                $oValueObject->setRp($fila->rp);
+                $oValueObject->setSeleccion($fila->Seleccion);
+                $oValueObject->setTerraplenes($fila->terraplenes);
+                $oValueObject->setTerraplenesMedida($fila->terraplenesMedida);
+                $oValueObject->setTipoDeObra($fila->tipoDeObra);
+                $oValueObject->setTratamientoTriple($fila->tratamientoTriple);
+                $oValueObject->setTratamientoTripleMedida($fila->tratamientoTripleMedida);
+                $oValueObject->setUte($fila->ute);
+                $oValueObject->setKml($fila->kml);
+                $oValueObject->setExpPrincipal($fila->expPrincipal);
+                $aObras[] = $oValueObject;
+                unset($oValueObject);
+            }
+            return $aObras;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * 
+     * @param ObrasEjecutadasValueObject $oValueObject
+     * @return boolean
+     */
+    public function buscarComitenteUnico($oValueObject) {
+        $sql = "SELECT * FROM obrasejecutadas";
         $sql .= " WHERE idcomitente = ".$oValueObject->getIdcomitente().";";
 
         $resultado = mysql_query($sql);
@@ -386,11 +455,12 @@ class MysqlObrasEjecutadasActiveRecord implements ActiveRecord{
      * @return boolean
      */
     public function guardarNombre($oValueObject) {
-        $sql = "INSERT INTO obrasejecutadas (id, denominacion, idcomitente, expPrincipal) VALUES(" 
+        $sql = "INSERT INTO obrasejecutadas (id, denominacion, idcomitente, expPrincipal, fechaInicio) VALUES(" 
                 . $oValueObject->getID() . ", '"
                 . utf8_decode($oValueObject->getDenominacion()) ."', "
                 . $oValueObject->getIdcomitente() . ", '"
-                . $oValueObject->getExpPrincipal() . "');";
+                . $oValueObject->getExpPrincipal() . "', '"
+                . $oValueObject->getFechaInicio() . "');";
         $resultado = mysql_query($sql);
 //        or die(mysql_error());
         if($resultado){

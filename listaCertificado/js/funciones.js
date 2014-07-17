@@ -16,10 +16,17 @@ function objetoAjax(){
 }
 
 function cambio(){
-    var comitente = document.getElementById('comitente').value;
-//    if(comitente === '0') {
-//        document.location.href = 'index.php';
-//    }
+    var comitente = '0';
+    var comitentes = document.getElementsByName('comitente');
+    for (i = 1;i <= comitentes.length; i++){
+        if(document.getElementById('comitente'+i).checked){
+            if(comitente.length === 0){
+                comitente = i;
+            } else {
+                comitente = comitente + ', ' + i;
+            }
+        }
+    }
     var divResultado = document.getElementById('listado');
     
     ajax=objetoAjax();
