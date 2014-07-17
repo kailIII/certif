@@ -128,13 +128,16 @@ $totalfinal = 0;
                         <?php if ((($orden_*100)/7)>=50) $progresoD = 'progress-bar-warning'; ?>
                         <?php if ((($orden_*100)/7)>=85) $progresoD = 'progress-bar-danger'; ?>
                         <td>
-                            <div class="progress bajocinco"><div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"></div></div>
-                            <div class="progress bajocero"><div class="progress-bar <?php echo $progresoD; ?>" style="width: <?php echo ($orden_*100)/$ordenTotal; ?>%;"></div></div>
+                            <div class="progress bajocinco"><div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"
+                                                                 title="<?php echo $diaTabla->format('d/m/Y'); ?>" ></div></div>
+                            <div class="progress bajocero"><div class="progress-bar <?php echo $progresoD; ?>" style="width: <?php echo ($orden_*100)/$ordenTotal; ?>%;"
+                                                                title="<?php echo $diaTabla->format('d/m/Y'); ?>"></div></div>
                         </td>
                         <td>
                             <?php
-                            if($expediente->getCedido() == ''){
-                                echo "*" . $expediente->getCedido() . "*";
+                            if($expediente->getCedido() != ''){
+                                echo "<img src='../images/punto_verde_12.png' title='".
+                                utf8_decode($expediente->getCedido())."' />";
                             }
                             ?>
                         </td>

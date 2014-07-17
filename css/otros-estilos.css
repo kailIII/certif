@@ -296,11 +296,12 @@ table th[class*="col-"] {
 	margin: 0;
 }
 html, body {
-	height: 100%;
+    height: 100%;
 }
 
 body {
     font-size: 12px;
+    padding-top: 60px;
 }
 .container {
 	min-height: 100%;
