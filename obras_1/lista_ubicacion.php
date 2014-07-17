@@ -1,5 +1,4 @@
 <?php
-// verificador de sesion
 //require_once '../usuarios/aut_verifica.inc.php';
 require_once '../clases/ActiveRecord/ActiveRecordAbstractFactory.php';
 $oMysql = ActiveRecordAbstractFactory::getActiveRecordFactory(ActiveRecordAbstractFactory::MYSQL);
@@ -21,4 +20,3 @@ if(isset($_GET['getDenominacionByLetters']) && isset($_GET['letters'])){
     }
 //    $con->Close();
 }
-?>

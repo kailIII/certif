@@ -13,6 +13,8 @@ include_once '../inicio/valido.php';
         <title>Expediente - Certificados</title>
         <?php include_once "../includes/php/estilos.php"; ?>
         <script type="text/javascript" src="js/funciones.js"></script>
+        <script type="text/javascript" src="js/ajax-dynamic-list.js"></script>
+        <script type="text/javascript" src="js/ajax.js"></script>
     </head>
     <body>
         <?php
@@ -27,7 +29,9 @@ include_once '../inicio/valido.php';
                 <div class="form-group col-lg-12">
                     <div class="form-group col-lg-12">
                         <label class="control-label">Descripci&oacute;n de la dependencia</label><br />
-                        <input class="form-control" data-toggle="tooltip" name="dependencia" id="dependencia" title="Descripci&oacute;n de la dependencia" alt="Descripci&oacute;n de la dependencia" placeholder="Descripci&oacute;n de la dependencia" type="text" /><br/>
+                        <input class="form-control" data-toggle="tooltip" name="dependencia" id="dependencia" title="Descripci&oacute;n de la dependencia" alt="Descripci&oacute;n de la dependencia" placeholder="Descripci&oacute;n de la dependencia" type="text"
+                               onkeyup="ajax_showOptionsDependencia(this,'getListadoByLetters',event);" /><br/>
+                        <input type="hidden" id="dependencia_hidden" name="dependencia_ID" value="" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label class="control-label">D&iacute;as duraci&oacute;n</label><br />
