@@ -18,8 +18,8 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
     public function actualizar($oValueObject) {
         $sql = "UPDATE certificacion SET";
         $sql .= " idObra = " . $oValueObject->getIdObra();
-        $sql .= ", certNro = " .$oValueObject->getCertNro();
-        $sql .= ", idTipo = " . $oValueObject->getIdTipo();
+        $sql .= ", certNro = '" .$oValueObject->getCertNro();
+        $sql .= "', idTipo = " . $oValueObject->getIdTipo();
         $sql .= ", mes = '" . $oValueObject->getMes() . "'";
         $sql .= ", periodo = '" . $oValueObject->getPeriodo() . "'";
         $sql .= ", importeBasico = " . $oValueObject->getImporteBasico();
@@ -94,7 +94,7 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
      */
     public function buscarPorCertNro($oValueObject) {
         $sql = "SELECT * FROM certificacion";
-        $sql .= " WHERE certNro = ".$oValueObject->getCertNro().";";
+        $sql .= " WHERE certNro = '".$oValueObject->getCertNro()."';";
         $resultado = mysql_query($sql);
         if($resultado){
             $fila = mysql_fetch_object($resultado);
@@ -257,8 +257,8 @@ class MysqlCertificacionActiveRecord implements ActiveRecord {
             fondoReparo, anticipoFinanciero, otrosDescuentos, aCobrar, comentario,
             fecha, participacion, imagen, fechaFirma) VALUES(";
         $sql .= $oValueObject->getIdObra();
-        $sql .= ", " .$oValueObject->getCertNro();
-        $sql .= ", " . $oValueObject->getIdTipo();
+        $sql .= ", '" .$oValueObject->getCertNro();
+        $sql .= "', " . $oValueObject->getIdTipo();
         $sql .= ", '" . $oValueObject->getMes() . "'";
         $sql .= ", '" . $oValueObject->getPeriodo() . "'";
         $sql .= ", 0";

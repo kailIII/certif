@@ -48,6 +48,9 @@
 		ajax_list_activeInput.value = tmpValue;
 		if(document.getElementById(ajax_list_activeInput.name + '_hidden'))document.getElementById(ajax_list_activeInput.name + '_hidden').value = inputObj.id;
 
+                /* Aca esta una modificacion mia.*/
+                /* Fin modificacion mia.*/
+                
   		var f1=setTimeout('ajax_list_activeInput.focus()',1);
   		var f2=setTimeout('ajax_list_activeInput.value = ajax_list_activeInput.value',1);
 

@@ -1,3 +1,5 @@
+/*pantalla custom de login*/
+
 #login {
    background: #1abc9c;
 }
@@ -5,99 +7,20 @@
  {
    background: none;
 }
-.topvar {
-    height: 55px;
-    background-color: #34495e;
-    margin-bottom: 20px;
-}
 
-.topvar-inner {
-    font-size: 17px;
-    color: #ffffff;
-    padding: 0 0 5px 0;
-}
-.topvar-inner .logo {
-background: url(../images/icons/png/logo.png) center 0 no-repeat;
-background-size: 45px 40px;
-height: 45px;
-margin:  10px 5px;
-overflow: hidden;
-text-indent: -9999em;
-width: 70px;
-display: inline-block;
-float: left;
-} 
-.topvar-inner-info {
-float: right;
-padding: 23px 0;
-}
+/*fin login*/
 
-.short {
-    width: 120px;
-    display: inline;
-}
+/* padding en el body para responsive. */
 
-.small {
-    margin: 0 30px 10px 0 ;
-}
-.span3 {
-width: 220px;
-}
-.demo-headline {
-padding: 73px 0 110px;
-text-align: center;
-}
+  @media (min-width: 981px) {
+    body {
+      padding-top: 60px;
+    }
+  }
 
-.demo-logo {
-font-size: 90px;
-font-weight: 900;
-letter-spacing: -2px;
-line-height: 100px;
-}
+/*fin paddding del body*/
 
-.demo-logo .logo {
-background: url(../images/icons/png/logo.png) center 0 no-repeat;
-background-size: 256px 186px;
-height: 186px;
-margin: 0 auto 26px;
-overflow: hidden;
-text-indent: -9999em;
-width: 256px;
-}
-/* input de tipo file  */
-.custom-input-file {
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-}
-.custom-input-file .input-file {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    font-size: 10000px;
-    border: 10000px solid transparent;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    position: absolute;
-    right: -1000px;
-    top: -1000px;
-    cursor: pointer;
-}
-.custom-input-file .archivo {
-    color: #fff;
-    font-size: 8pt;
-    overflow: hidden;
-}
-.custom-input-file:hover .archivo {
-    background-color: #fff;
-    color: #000;   
-}
-
-.file-input-wrapper button.btn {
-    width: 10.1em;
-}
-
-/* Footer */
+/*footer*/
 
 .Bottombar {    
     margin: 20px 0 0 0;
@@ -106,6 +29,8 @@ width: 256px;
     background: #1abc9c;
     color: #ffffff;
 }
+
+/*fin bottom*/
 
 /* tablas */
 
@@ -292,17 +217,20 @@ table th[class*="col-"] {
   color: #ffffff;
 }
 
+/* fin de tablas */
+
 * {
 	margin: 0;
 }
 html, body {
-    height: 100%;
+	height: 100%;
 }
 
 body {
     font-size: 12px;
-    padding-top: 60px;
 }
+
+/* sticky footer, el pie depagina queda siempre pegado al fondo. */
 .container {
 	min-height: 100%;
 	height: auto !important;
@@ -352,34 +280,31 @@ http://ryanfait.com/
 }
 
 
-/* Lista Dinamica */
-/* Big box with list of options */
-#ajax_listOfOptions{
-  position:absolute;  /* Never change this one */
-  width:175px;  /* Width of box */
-  height:250px;  /* Height of box */
-  overflow:auto;  /* Scrolling features */
-  border:1px solid #317082;  /* Dark green border */
-  background-color:#FFF;  /* White background color */
-  text-align:left;
-  font-size:0.9em;
-  z-index:100;
+/*estilos labels Override*/
+
+.label-success {
+background-color: #34495e;
 }
-#ajax_listOfOptions div{  /* General rule for both .optionDiv and .optionDivSelected */
-  margin:1px;    
-  padding:1px;
-  cursor:pointer;
-  font-size:0.9em;
+
+.label {
+display: inline;
+padding: .2em .8em 1em;
+font-size: 85%;
+font-weight: bold;
+line-height: 1;
+color: #ffffff;
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+border-radius: .25em;
 }
-#ajax_listOfOptions .optionDiv{  /* Div for each item in list */
-  
+
+/*fin override labels*/
+
+.navbar-brand {
+float: left;
+padding: 15px 15px 20px;
+font-size: 18px;
+line-height: 20px;
 }
-#ajax_listOfOptions .optionDivSelected{ /* Selected item in the list */
-  background-color:#317082;
-  color:#FFF;
-}
-#ajax_listOfOptions_iframe{
-  background-color:#F00;
-  position:absolute;
-  z-index:5;
-}
+

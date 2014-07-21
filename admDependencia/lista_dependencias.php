@@ -15,6 +15,7 @@ if(isset($_GET['getListadoByLetters']) && isset($_GET['letters'])){
     while($inf = mysql_fetch_array($resultado)){
         $cod = $inf['iddependencia'];
         $nombre = htmlentities($inf["dependencia"] . " " . $inf["dias"] . " " . $inf["orden"]);
-        echo $cod . "###" . $cod . " " . $nombre . "|";
+        $nombre = htmlentities($inf["dependencia"]);
+        echo $cod . "###" . $nombre . "|";
     }
 }

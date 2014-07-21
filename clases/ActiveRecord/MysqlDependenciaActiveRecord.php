@@ -8,8 +8,37 @@ include_once '../clases/ValueObject/DependenciaValueObject.php';
  * @author Martin
  */
 class MysqlDependenciaActiveRecord implements ActiveRecord{
+    /**
+     * 
+     * @param DependenciaValueObject $oValueObject
+     * @return boolean
+     */
     public function actualizar($oValueObject) {
-        
+        $oPrueba = new DependenciaValueObject();
+        $oMysqlDependencia = new MysqlDependenciaActiveRecord();
+        $orden = $oValueObject->getOrden();
+        $dias = $oValueObject->getDias();
+        $dependencia = $oValueObject->getDependencia();
+
+        $oValueObject = $oMysqlDependencia->buscar($oValueObject);
+        if($orden !=  $oValueObject->getOrden()){
+            $sql ="UPDATE dependencia "
+                    . "SET orden = orden + 1 "
+//                    . "WHERE orden >= " . $orden . ";";
+                    . "WHERE orden BETWEEN " . $orden ." AND "
+                    . $oValueObject->getOrden(). ";";
+            mysql_query($sql) or die(FALSE);
+        }
+        $sql = "UPDATE dependencia SET dependencia = '" . utf8_encode($dependencia)
+                . "', dias = " . $dias
+                . ", orden = " . $orden
+                . " WHERE iddependencia = " . $oValueObject->getIddependencia() .";";
+        $resultado = mysql_query($sql);
+        if($resultado){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     public function borrar($oValueObject) {
@@ -22,7 +51,7 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
     * @return boolean
     */
     public function buscar($oValueObject) {
-        $sql ="SELECT iddependencia, dependencia, dias FROM dependencia "
+        $sql ="SELECT iddependencia, dependencia, dias, orden FROM dependencia "
                 . " WHERE iddependencia = " . $oValueObject->getIddependencia() .";";
         $resultado = mysql_query($sql);
         $resultado = mysql_fetch_object($resultado);
@@ -30,7 +59,8 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
             $oValueObject->setIddependencia($resultado->iddependencia);
             $oValueObject->setDias($resultado->dias);
             $oValueObject->setDependencia($resultado->dependencia);
-            return TRUE;
+            $oValueObject->setOrden($resultado->orden);
+            return $oValueObject;
         } else {
             return FALSE;
         }
@@ -42,7 +72,7 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
     * @return boolean
     */
     public function buscarDependencia($oValueObject) {
-        $sql ="SELECT iddependencia, dependencia, dias FROM dependencia "
+        $sql ="SELECT iddependencia, dependencia, dias, orden FROM dependencia "
                 . " WHERE dependencia = '" . $oValueObject->getDependencia() ."';";
         
         $resultado = mysql_query($sql);
@@ -51,6 +81,7 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
             $oValueObject->setIddependencia($resultado->iddependencia);
             $oValueObject->setDias($resultado->dias);
             $oValueObject->setDependencia($resultado->dependencia);
+            $oValueObject->setOrden($resultado->orden);
             return TRUE;
         } else {
             return FALSE;
@@ -62,7 +93,7 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
     * @return boolean
     */
     public function buscarTodo() {
-        $sql = 'SELECT * FROM dependencia;';
+        $sql = 'SELECT * FROM dependencia ORDER BY orden;';
         $resultado = mysql_query($sql);
         if($resultado){
             $aDependencia = array();
@@ -134,8 +165,8 @@ class MysqlDependenciaActiveRecord implements ActiveRecord{
             } else {
                 $sql = "INSERT INTO dependencia (dependencia, dias) VALUES ("
                     . "'" . $oValueObject->getDependencia() . "', "
-                    . "7);";
-    //                . $oValueObject->getDias() .")";
+//                    . "7);";
+                    . $oValueObject->getDias() .")";
             }
             if(mysql_query($sql)){
                 $result = mysql_query("SELECT DISTINCT LAST_INSERT_ID() FROM expediente");

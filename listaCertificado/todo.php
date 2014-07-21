@@ -43,7 +43,7 @@ foreach ($oDependencia as $auxDep) {
 }
 $totalfinal = 0;
 ?>
-<div class="form-group col-lg-12">
+<div class="col-lg-12">
     <?php
     foreach($lista as $lista_){
         /* Busco el nombre de la obra. */
@@ -109,7 +109,7 @@ $totalfinal = 0;
                     $diaHoy = new DateTime(date('Y-m-d'));
                     $dias = $diaTabla->diff($diaHoy);
                     ?>
-                    <tr ondblclick="javascript:window.location.href='../historiaCertificado/'+<?php echo $expediente->getIdexpediente(); ?>;">
+                    <tr ondblclick="javascript:window.location.href='../historiaCertificado/<?php echo $expediente->getIdexpediente(); ?>';">
                         <td><?php echo $expediente->getCertDpv(); ?></td>
                         <td><?php echo $expediente->getCertDnv(); ?></td>
                         <td><?php echo $expediente->getExpDnv(); ?></td>
@@ -128,10 +128,16 @@ $totalfinal = 0;
                         <?php if ((($orden_*100)/7)>=50) $progresoD = 'progress-bar-warning'; ?>
                         <?php if ((($orden_*100)/7)>=85) $progresoD = 'progress-bar-danger'; ?>
                         <td>
-                            <div class="progress bajocinco"><div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"
-                                                                 title="<?php echo $diaTabla->format('d/m/Y'); ?>" ></div></div>
-                            <div class="progress bajocero"><div class="progress-bar <?php echo $progresoD; ?>" style="width: <?php echo ($orden_*100)/$ordenTotal; ?>%;"
-                                                                title="<?php echo $diaTabla->format('d/m/Y'); ?>"></div></div>
+                            <div class="progress bajocinco">
+                                <div class="progress-bar <?php echo $progreso; ?>" style="width: <?php echo ($dias->format('%a')*100)/7; ?>%;"
+                                                                 title="<?php echo $diaTabla->format('d/m/Y'); ?>" ></div>
+                                <div class="progress-bar progress-bar-info" style="width: <?php echo 100-($dias->format('%a')*100)/7; ?>%;"
+                                                                 title="<?php echo $diaTabla->format('d/m/Y'); ?>" ></div>
+                            </div>
+                            <div class="progress bajocero">
+                                <div class="progress-bar <?php echo $progresoD; ?>" style="width: <?php echo ($orden_*100)/$ordenTotal; ?>%;"
+                                                                title="<?php echo $diaTabla->format('d/m/Y'); ?>"></div>
+                            </div>
                         </td>
                         <td>
                             <?php

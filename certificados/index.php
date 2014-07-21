@@ -16,7 +16,7 @@ include_once '../inicio/valido.php';
         <?php include_once "../includes/php/header.php";?>
         <div class="container">
             <form class="form-horizontal">
-                <legend>Certificados de obra</legend>
+                <legend>Expedientes de obra</legend>
                 <div class="form-group">
                     <div class="col-lg-11">
                         <label class="label-success label">Nombre obra</label><br />
@@ -43,22 +43,14 @@ include_once '../inicio/valido.php';
                         </a>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-4">
-                        <label class="label-success label">Tipo de obra</label><br />
-                        <select name="tipocertf" id="tipocertf" class="select-block" value="Comun">
-                              <option value="1">Comun</option>
-                              <option value="2">Provisorio</option>
-                              <option value="3">Definitivo</option>
-                              <option value="4">DYC</option>
-                              <option value="5">Bis</option>
-                        </select>
-                    </div>
-                </div>
+<!--                <div class="form-group">
+                    
+                </div>-->
                 <div class="form-group">
                     <div class="col-lg-2">
                         <label class="label-success label" data-toggle="tooltip">Certif. Nro.</label>
-                        <input class="form-control" data-toggle="tooltip" name="nrocert" title="Numero de Certificado" id="nrocert" alt="Numero de Certificado" placeholder="Certif. Nro." type="number" onkeypress="return soloNumeros(event);" /><br/>
+                        <input class="form-control" data-toggle="tooltip" name="nrocert" title="Numero de Certificado" id="nrocert" alt="Numero de Certificado" placeholder="Certif. Nro." type="text" onblur="carga(this.value)" /><br/>
+                        <!--onkeypress="return soloNumeros(event);"-->
                     </div>
                     <div class="col-lg-2">
                         <label class="label-success label">Certificado DNV</label>
@@ -89,6 +81,16 @@ include_once '../inicio/valido.php';
                     <div class="col-lg-3">
                         <label class="label-success label">Vencimiento</label>
                         <input class="form-control" data-toggle="tooltip" name="vencimientoExpediente" id="vencimientoExpediente" title="Vencimiento" alt="Vencimiento" placeholder="Vencimiento" type="date" value="<?php echo date('Y-m-d'); ?>" /><br/>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="label-success label">Tipo de certificado</label><br />
+                        <select name="tipocertf" id="tipocertf" class="select-block" value="Comun">
+                              <option value="1">Comun</option>
+                              <option value="2">Provisorio</option>
+                              <option value="3">Definitivo</option>
+                              <option value="4">DYC</option>
+                              <option value="5">Bis</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">

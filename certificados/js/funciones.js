@@ -206,3 +206,26 @@ function soloNumeros(evt){
         return false;
     }
 }
+
+function carga(certNro){
+    var divResultado = document.getElementById('divResultado');
+    ajax=objetoAjax();
+    ajax.open("POST", "cargaExpe.php" ,true);
+    ajax.onreadystatechange=function() {
+        if (ajax.readyState===1) {
+//            divResultado.innerHTML= '<center><img src="../imag1es/cargando.gif"><br/>Guardando los datos...</center>';
+        } else if (ajax.readyState===4) {
+            //mostrar los nuevos registros en esta capa
+            divResultado.innerHTML = ajax.responseText;
+            document.getElementById('dnvExpediente').value = document.getElementById('h_01').value;
+            
+            var mes = document.getElementById('h_04').value;
+            var mes = mes.split('/');
+            
+            document.getElementById('mesExpediente').value = decimeElMes(mes[1])+'-'+mes[2];
+        }
+    };
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    
+    ajax.send("certNro="+certNro);
+}

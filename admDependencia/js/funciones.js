@@ -16,13 +16,21 @@ function objetoAjax(){
 }
 
 function guardarDatos(){
+    var guardar = document.getElementById('guardar').value;
+    if(guardar === 'Aceptar'){
+        window.location.reload();
+        return false;
+    }
     var divResultado = document.getElementById('divResultado');
+    
     var orden = document.getElementById('orden').value;
     
     var duracion = document.getElementById('duracion').value;
     
     var dependencia = document.getElementById('dependencia').value;
 
+    var iddependencia = document.getElementById('dependencia_hidden').value;
+    
     document.getElementById('dependencia').style.border = "2px solid #bdc3c7";
     if(dependencia === ''){
         document.getElementById('dependencia').style.border = "2px solid red";
@@ -39,17 +47,19 @@ function guardarDatos(){
         } else if (ajax.readyState===4) {
             //mostrar los nuevos registros en esta capa
             divResultado.innerHTML = ajax.responseText;
+            if(document.getElementById('resultado').value === '0'){
+                document.getElementById('guardar').value = "Aceptar";
+            }
         }
     };
     //muy importante este encabezado ya que hacemos uso de un formulario
     ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     //enviando los valores
-    alert("dependencia="+dependencia
-            +"&duracion="+duracion
-            +"&orden="+orden);
     ajax.send("dependencia="+dependencia
             +"&duracion="+duracion
-            +"&orden="+orden);
+            +"&orden="+orden
+            +"&iddependencia="+iddependencia
+            +"&guardar="+guardar);
 }
 
 function soloNumeros(evt){
@@ -65,4 +75,13 @@ function soloNumeros(evt){
     } else {
         return false;
     }
+}
+
+function modifica(id, texto, dias, orden){
+    document.getElementById('dependencia_hidden').value = id;
+    document.getElementById('dependencia').value = texto;
+    document.getElementById('duracion').value = dias;
+    document.getElementById('orden').value = orden;
+    window.scrollTo(0,0);
+    document.getElementById('guardar').value = "Modificar";
 }

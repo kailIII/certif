@@ -63,8 +63,12 @@ $oMysql->conectar();
                     <a href="../historiaCertificado/actualizacion.php" class="btn btn-large btn-block btn-primary">Actualizar</a>
                 </div>
             </div>
+            <legend>Certificados</legend>
+            <div class="row">
             <div class="form-group">
-                <label class="control-label"> Comitente </label><br />
+                <div class="col-lg-12">
+                    <label class="control-label"> Comitente </label><br />
+                </div>
                 <?php
                 $oMysqlComitente = $oMysql->getComitenteActiveRecord();
                 $oComitente = new ComitenteValueObject();
@@ -78,8 +82,8 @@ $oMysql->conectar();
                 }
                 ?>
             </div>
-            <legend>Certificados</legend>
-            <div id="listado">
+            </div>
+            <div class="row" id="listado">
                 <?php include './todo.php';?>
             </div>
         </div>

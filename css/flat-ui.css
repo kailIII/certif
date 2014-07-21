@@ -724,9 +724,9 @@ address {
   border-right-width: 6px;
   border-left-width: 6px;
 }
-.navbar {
+/*.navbar {
   font-size: 16px;
-  /*border-radius: 6px;*/
+  border-radius: 6px;
   background: #eceef0;
   border: none;
 }
@@ -941,8 +941,8 @@ address {
   background-color: #34495e;
 }
 .navbar-inverse .navbar-brand {
-/*  border-bottom: 2px solid #2c3e50;
-  border-right: 2px solid #2c3e50;*/
+  border-bottom: 2px solid #2c3e50;
+  border-right: 2px solid #2c3e50;
   color: #ffffff;
   padding: 10px 28px 11px 32px;
 }
@@ -962,8 +962,8 @@ address {
 .navbar-inverse .nav > li.active > a,
 .navbar-inverse .nav > li.active > a:hover,
 .navbar-inverse .nav > li.active > a:focus {
-/*  background-color: #1abc9c;
-  border-bottom-color: #16a085;*/
+  background-color: #1abc9c;
+  border-bottom-color: #16a085;
   border-left: none;
   color: #ffffff;
   padding-left: 20px;
@@ -974,8 +974,8 @@ address {
 }
 .navbar-inverse .nav > li > a {
   font-size: 16px;
-/*  border-bottom: 2px solid #2c3e50;
-  border-left: 2px solid #2c3e50;*/
+  border-bottom: 2px solid #2c3e50;
+  border-left: 2px solid #2c3e50;
   color: #ffffff;
   padding: 16px 20px 15px;
   line-height: 20px;
@@ -1106,7 +1106,7 @@ address {
 .navbar.navbar-fixed-bottom .nav ul {
   bottom: 80%;
   top: auto;
-}
+}*/
 .select {
   display: inline-block;
   margin-bottom: 10px;
